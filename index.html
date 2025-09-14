@@ -1,308 +1,345 @@
 <!DOCTYPE html>
-<html lang='ru'>
+<html lang="ru">
 <head>
-	<meta charset='UTF-8'>
-	<meta name='robots' content='index,follow,noodp,noydir'>
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<meta http-equiv='X-UA-Compatible' content='ie=edge'>
-	<title>Мобильные видеоигры</title>
-	<meta name='description' content='Здесь представлены все видео игры, созданные нашей компанией.'>
-	<meta name='keywords' content='игры, мобильные, app store, google play'>
-	<meta property='og:title' content='Мобильные видеоигры'>
-	<meta property='og:site_name' content='Мобильные видеоигры'>
-	<meta property='og:description' content='Здесь представлены все видео игры, созданные нашей компанией.'>
-	<link rel='stylesheet' href='https://crafty.site/css/main.css' type='text/css' charset='utf-8'>
-	<link rel='stylesheet' href='css/offers.css?chache=167395' type='text/css' charset='utf-8'>
-	<link
-            href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
-            rel="stylesheet"
-            integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
-            crossorigin="anonymous"
-        />
-	<link type='image/png' href='https://crafty.site/img/favicon.png' rel='shortcut icon' />
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>RentIT — Мобильные видеоигры</title>
+
+  <!-- Bootstrap -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <style>
+    /* Палитра: светло-мятный -> бирюзовый -> темный бирюзовый */
+    :root{
+      --mint-1: #A8E6CF;
+      --mint-2: #4DB6AC;
+      --mint-3: #00BFA5;
+      --mint-4: #007D79;
+      --mint-5: #006D77;
+      --card-bg: #ffffff;
+      --text-dark: #0f1720;
+    }
+
+    body {
+      font-family: "Segoe UI", Tahoma, Arial, sans-serif;
+      background: #f8f9fa;
+      color: var(--text-dark);
+    }
+
+    /* Header / Nav */
+    header {
+      background: linear-gradient(90deg, var(--mint-1), var(--mint-3), var(--mint-5));
+      color: #fff;
+    }
+    header .navbar {
+      background: rgba(255,255,255,0.08);
+      backdrop-filter: blur(6px);
+      border-radius: 0.75rem;
+      padding: 0.35rem 0.6rem;
+    }
+    header h1 { font-weight: 700; font-size: clamp(1.6rem,4.6vw,2.6rem); margin-bottom: .25rem;}
+    header h2 { font-weight: 400; font-size: clamp(1rem,2.2vw,1.3rem); color: rgba(255,255,255,0.95); }
+
+    /* Cards */
+    .card {
+      border: none;
+      border-radius: 14px;
+      background: var(--card-bg);
+      overflow: hidden;
+      transition: transform .28s ease, box-shadow .28s ease;
+    }
+    .card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 14px 30px rgba(6, 24, 44, 0.12);
+    }
+    .card-header-accent {
+      height: 6px;
+    }
+    /* accent colors from palette */
+    .accent-1 { background: var(--mint-1); }
+    .accent-2 { background: var(--mint-2); }
+    .accent-3 { background: var(--mint-3); }
+    .accent-4 { background: var(--mint-5); }
+
+    .card-img-top {
+      object-fit: cover;
+      height: 190px;
+      width: 100%;
+    }
+
+
+    /* Buttons */
+    .btn-play {
+      background: linear-gradient(180deg,var(--mint-3),var(--mint-4));
+      color: #fff;
+      border: none;
+      border-radius: 28px;
+      padding: .5rem .9rem;
+      transition: transform .18s ease, opacity .18s ease;
+    }
+    .btn-play:hover { transform: translateY(-2px); opacity: 0.95; }
+
+    /* Footer */
+    footer {
+      background: linear-gradient(90deg, var(--mint-5), var(--mint-3), var(--mint-1));
+      color: #fff;
+      padding: 1.6rem 0;
+    }
+
+    /* Small helpers */
+    .container { max-width: 1150px; }
+    .text-muted-soft { color: rgba(255,255,255,0.9); }
+
+    /* Responsive tweaks */
+    @media (max-width: 575px) {
+      header .navbar { padding: .25rem .4rem; }
+      .card-img-top { height: 150px; }
+    }
+  </style>
 </head>
 <body>
-	<div id='wrapper'>
-		<header class="simple-block p-3 mb-3 border-bottom" id="simple-block-1">
-			<nav class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start bg-light" style="border-radius: 20px; padding-top: 10px; padding-bottom: 10px;">
-				<a href="/" class="d-flex align-items-center mb-2 mb-lg-0 text-dark text-decoration-none">
-          			<svg class="bi me-2" width="18" height="32" role="img" aria-label="Bootstrap">
-						<use xlink:href="#bootstrap"></use>
-					</svg>
-        		</a>
+  <header class="py-4">
+    <div class="container">
+      <!-- Navbar -->
+      <nav class="navbar navbar-expand-lg mb-3">
+        <div class="container-fluid px-0">
+          <a class="navbar-brand text-white fw-bold" href="#" data-i18n="brand">RentIT</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+          </button>
 
-				<ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
-					<li><a href="index.html"><img src="https://crafty.site/projects/YazNo1NKsOIx/img/1756974340.png" alt="Изображение" style="width: 45px; height: 45px; margin-right: 20px;"></a></li>
-					<li><a href="offers.html" class="nav-link px-2 link-dark">Places</a></li>
-					<li><a href="#" class="nav-link px-2 link-dark">Companies</a></li>
-					<li><a href="#" class="nav-link px-2 link-dark">Map</a></li>
-					<li><a href="" class="nav-link px-2 link-dark">About us</a></li>
-				</ul>
+          <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item"><a class="nav-link text-white" href="#places" data-i18n="nav_places">Places</a></li>
+              <li class="nav-item"><a class="nav-link text-white" href="#about" data-i18n="nav_about">About</a></li>
+              <li class="nav-item"><a class="nav-link text-white" href="#contact" data-i18n="nav_contact">Contact</a></li>
+            </ul>
 
-				<form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" style="margin-top: 10px;">
-					<input type="search" class="form-control" placeholder="Search..." aria-label="Search">
-				</form>
+            <!-- Логин и Регистрация -->
+            <div class="d-flex align-items-center gap-2">
+              <a href="#" class="btn btn-outline-light btn-sm" data-i18n="login">Войти</a>
+              <a href="#" class="btn btn-warning btn-light fw-bold text-dark" data-i18n="register">Регистрация</a>
 
-				<div class="dropdown text-end" style="padding-right: 20px">
-					<a href="#" class="d-block link-dark text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
-						<img src="https://github.com/mdo.png" alt="mdo" width="32" height="32" class="rounded-circle">
-					</a>
-					<ul class="dropdown-menu text-small" aria-labelledby="dropdownUser1">
-						<li><a class="dropdown-item" href="#">New project...</a></li>
-						<li><a class="dropdown-item" href="#">Settings</a></li>
-						<li><a class="dropdown-item" href="#">Profile</a></li>
-						<li><hr class="dropdown-divider"></li>
-						<li><a class="dropdown-item" href="#">Sign out</a></li>
-					</ul>
-				</div>
-			</nav>
-			<h1 class="text-block" id="text-block-1">RentIT</h1>
-			<div class="divider-block" id="divider-block-1">
-				<hr>
-			</div>
-			<h2 class="text-block" id="text-block-2">Rent Now, Thank Us Later.</h2>
-			<div class="divider-block" id="divider-block-3">
-				<hr>
-			</div>
-		</header>
-		<div class="simple-block divider-diagonal" id="simple-block-2">
-			<p class="text-block" id="text-block-3">THE BEST OPTIONS FOR YOU</p>
-			<div class="colums-block four" id="colums-block-1">
-				<div class="">
-					<div class="image-block" id="image-block-1">
-						<img src="https://i.postimg.cc/yYf2W1YJ/OLearys-1-1.png" alt="Изображение">
-					</div>
-					<p class="text-block" id="text-block-4"><b>O'Learys</b></p>
-					<p class="text-block" id="text-block-8">O'Learys – The largest sports bar and restaurant in Latvia!
-More than 70 TV screens, bowling, billiards, virtual reality and sports simulators.</p>
-					<div class="divider-block" id="divider-block-4">
-						<hr>
-					</div>
-					<div class="button-block-clear" id="button-block-clear-1">
-						<a href="https://play.google.com/store/apps/details?id=com.FruitApps.CrossDrive" target="_blank">
-							<button class="button-block" id="button-block-1">Google Play</button>
-						</a>
-					</div>
-					<div class="divider-block" id="divider-block-8">
-						<hr>
-					</div>
-				</div>
-				<div class="">
-					<div class="image-block" id="image-block-2">
-						<img src="https://www.intergameonline.com/uploads/images/posts/0lympic_logo_2005_sin.taust___c20ad4.jpg" alt="Изображение">
-					</div>
-					<p class="text-block" id="text-block-6"><b>Olympic</b></p>
-					<p class="text-block" id="text-block-11">Olympic Casino is much more than just table games or slot machines: with its unique interior design, comfortable lounge areas, modern sports bars and betting shops, delicious cocktails and music evenings, it is a great entertainment venue for all tastes. </p>
-					<div class="divider-block" id="divider-block-5">
-						<hr>
-					</div>
-					<div class="button-block-clear" id="button-block-clear-2">
-						<a href="https://play.google.com/store/apps/details?id=com.FruitApps.DropTheBallGame" target="_blank">
-							<button class="button-block" id="button-block-2">Google Play</button>
-						</a>
-					</div>
-					<div class="divider-block" id="divider-block-9">
-						<hr>
-					</div>
-				</div>
-				<div class="">
-					<div class="image-block" id="image-block-3">
-						<img src="https://i.ibb.co/0px6wc1X/ezitis-migla-teika-1.jpg" alt="Изображение">
-					</div>
-					<p class="text-block" id="text-block-7"><b>Ezitis Migla</b></p>
-					<p class="text-block" id="text-block-10">This popular chain of restaurants in Latvia known for its unique atmosphere, delicious food and great cocktails is very popular among the locals. If you see a sign with a hedgehog, you can be sure that you will be warmly welcomed and heartily served.</p>
-					<div class="divider-block" id="divider-block-7">
-						<hr>
-					</div>
-					<div class="button-block-clear" id="button-block-clear-4">
-						<a href="https://play.google.com/store/apps/details?id=com.FruitApps.JumpToStep" target="_blank">
-							<button class="button-block" id="button-block-4">Google Play</button>
-						</a>
-					</div>
-					<div class="divider-block" id="divider-block-11">
-						<hr>
-					</div>
-				</div>
-				<div class="">
-					<div class="image-block" id="image-block-4">
-						<img src="https://i.postimg.cc/yY5nwk8T/72ef5595-1edc-4d18-9fbe-c2f0b5061b43-ALV-Uj-VBQW8-SSF2-UCt0f-Dg-K3-XW6-UPede-Bwlp-XLp-ADJAT9m3nzz-Z3-XNQ-1.png" alt="Perfect Stop">
-					</div>
-					<p class="text-block" id="text-block-5"><b>Skypark</b></p>
-					<p class="text-block" id="text-block-9">An entertainment center for the whole family, which includes a huge trampoline area, a children's amusement park on four floors, 20 party rooms, a racetrack and an impressive laser tag arena, providing unique emotions and joy.</p>
-					<div class="divider-block" id="divider-block-6">
-						<hr>
-					</div>
-					<div class="button-block-clear" id="button-block-clear-3">
-						<a href="https://play.google.com/store/apps/details?id=com.FruitApps.PerfectStop" target="_blank">
-							<button class="button-block" id="button-block-3">Google Play</button>
-						</a>
-					</div>
-					<div class="divider-block" id="divider-block-10">
-						<hr>
-					</div>
-				</div>
-			</div>
-		</div>
-		<div class="simple-block" id="simple-block-6">
-			<h3 class="text-block" id="text-block-12">Something about us</h3>
-			<div class="divider-block" id="divider-block-12">
-				<hr>
-			</div>
-			<div class="block-inside" id="block-inside-1">
-				<div class="colums-block two">
-					<div class="">
-						<p class="text-block" id="text-block-22">We create RentIT with the same care and attention that you put into choosing the item you need right now.<br><b>Our goal</b> is to make renting affordable, simple, and convenient for everyone!</p>
-					</div>
-					<div class="">
-						<p class="text-block" id="text-block-23">Every offer undergoes a verification process before it is posted on the website. We make sure that it is of high quality, relevant, and convenient so that you can enjoy renting — simply, quickly, and without any hassle!</p>
-					</div>
-				</div>
-				<div class="divider-block" id="divider-block-13">
-					<hr>
-				</div>
-				<div class="colums-block two">
-					<div class="">
-						<div class="button-block-clear" id="button-block-clear-11">
-							<a href="https://play.google.com/store/apps/developer?id=Fruit+Apps" target="_blank">
-								<button class="button-block" id="button-block-11">Page in FaceBook</button>
-							</a>
-						</div>
-					</div>
-					<div class="">
-						<div class="button-block-clear" id="button-block-clear-12">
-							<a href="https://itunes.apple.com/us/developer/george-dudar/id1040555150" target="_blank">
-								<button class="button-block" id="button-block-12">Page in Instagram</button>
-							</a>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-		<div class="simple-block" id="simple-block-4">
-			<p class="text-block" id="text-block-15">If you have questions.</p>
-			<div class="divider-block" id="divider-block-14">
-				<hr>
-			</div>
-			<form class="form-block" action="" method="post" id="form-block-1" onsubmit="return sendForm ('#form-block-1', event)">
-				<input type="text" name="name" placeholder="Имя">
-				<input type="email" name="email" placeholder="Email">
-				<input type="text" name="subject" placeholder="Тема сообщения">
-				<textarea name="message" placeholder="Сообщение"></textarea>
-				<button class="button-block">Send a message</button>
-				<div class="message">
-				</div>
-			</form>
-		</div>
-		<div class="simple-block divider-ears" id="simple-block-7">
-			<div class="colums-block three" id="colums-block-4">
-				<div class="">
-					<p class="text-block" id="text-block-17"><b>Address</b></p>
-					<p class="text-block" id="text-block-20">Our address:<br>Bultu iela 7</p>
-				</div>
-				<div class="">
-					<p class="text-block" id="text-block-18"><b>Share our website</b></p>
-					<div class="social-buttons" id="social-buttons-14">
-						<script src="https://yastatic.net/es5-shims/0.0.2/es5-shims.min.js">
-						</script>
-						<script src="https://yastatic.net/share2/share.js">
-						</script>
-						<div class="ya-share2" data-services="gplus,twitter,telegram">
-						</div>
-					</div>
-				</div>
-				<div class="">
-					<p class="text-block" id="text-block-19"><b>Contacts</b></p>
-					<p class="text-block" id="text-block-21">**+371 27582757*<br>ar.sulgan@gmail.com</p>
-				</div>
-			</div>
-		</div>
-		<footer class="simple-block" id="simple-block-5">
-			<p class="text-block" id="text-block-16">All rights reserved @</p>
-		</footer>
+              <!-- Language dropdown -->
+              <div class="dropdown lang-select ms-2">
+                <button class="btn btn-light dropdown-toggle" type="button" id="langBtn" data-bs-toggle="dropdown" aria-expanded="false">Русский</button>
+                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="langBtn">
+                  <li><a class="dropdown-item" href="#" data-lang="ru">Русский</a></li>
+                  <li><a class="dropdown-item" href="#" data-lang="en">English</a></li>
+                  <li><a class="dropdown-item" href="#" data-lang="lv">Latviešu</a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </nav>
 
-	<!-- Конец HTML файла -->
-	</div>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<script>
-$("head").append("<link rel='stylesheet' href='https://crafty.site/css/dividers.css' type='text/css' charset='utf-8'>");
-</script>
-<script>
-resizeText ();
 
-$(window).resize(function() {
-	resizeText ();
-});
+      <h1 data-i18n="header_title">Rent Now, Thank Us Later</h1>
+      <h2 class="fw-light" data-i18n="header_subtitle">Лучшие предложения для вас</h2>
+    </div>
+  </header>
 
-function resizeText () {
-	$(".text-block").removeAttr ("style");
-	$(".text-block").each (function () {
-		var size = $(this).css ("font-size");
-		if ($(window).width () < 400 && parseInt (size) > 30)
-			$(this).css ("font-size", "30px");
-		else if ($(window).width () < 500 && parseInt (size) > 40)
-			$(this).css ("font-size", "40px");
-		else if ($(window).width () < 700 && parseInt (size) > 50)
-			$(this).css ("font-size", "50px");
-		else if ($(window).width () < 850 && parseInt (size) > 65)
-			$(this).css ("font-size", "65px");
-		else if ($(window).width () < 1000 && parseInt (size) > 80)
-			$(this).css ("font-size", "80px");
-	});
-}
-</script>
-<script>
-function sendForm (form, ev) {
-	ev.preventDefault();
-	var name = '%%NOTHING%%', phone = '%%NOTHING%%', email, subject = '%%NOTHING%%', message = '%%NOTHING%%';
-	if ($(form + " [name='name']").is(":visible"))
-		name = $(form + " [name='name']").val ();
-	if ($(form + " [name='phone']").is(":visible"))
-		phone = $(form + " [name='phone']").val ();
-	if ($(form + " [name='subject']").is(":visible"))
-		subject = $(form + " [name='subject']").val ();
-	if ($(form + " [name='message']").is(":visible"))
-		message = $(form + " [name='message']").val ();
-	var email = $(form + " [name='email']").val ();
-	$.ajax({
-		url:		'ajax/mail.php',
-		type:		'POST',
-		cache:		false,
-		data:		{'name':name, 'phone':phone, 'email':email, 'subject':subject, 'message':message},
-		dataType:	'html',
-		beforeSend: function () {
-			$(form + " .button-block").prop('disabled', true);
-		},
-		success: function(data) {
-			if (data == true) {
-				if (name != '')
-					$(form + " [name='name']").val ("");
-				if (phone != '')
-					$(form + " [name='phone']").val ("");
-				$(form + " [name='email']").val ("");
-				if (subject != '')
-					$(form + " [name='subject']").val ("");
-				if (message != '')
-					$(form + " [name='message']").val ("");
-				$(form + " .button-block").text ("Отправлено");
-				$(form + " .message").text('');
-			} else {
-				if (data == false)
-					$(form + " .message").text ("Проблема с сервером!");
-				else {
-					switch (data) {
-						case "name": $(form + " .message").text ("Имя не указано"); break;
-						case "phone": $(form + " .message").text ("Телефон указан неверно"); break;
-						case "email": $(form + " .message").text ("Email указан неверно"); break;
-						case "subject": $(form + " .message").text ("Тема не указана"); break;
-						case "message": $(form + " .message").text ("Сообщение не написано"); break;
-						default: $(form + " .message").text ("Какие-либо поля не заполнены");
-					}
-				}
-			}
-			$(form + " .button-block").prop('disabled', false);
-		}
-	});
-}
-</script>
+  <main>
+    <!-- Places / 4 cards (kортежи) -->
+    <section id="places" class="container py-5">
+      <div class="row g-4">
+        <!-- Card 1 -->
+        <div class="col-md-6 col-lg-3">
+          <div class="card h-100 shadow-sm">
+            <div class="card-header-accent accent-1"></div>
+            <img src="https://i.postimg.cc/yYf2W1YJ/OLearys-1-1.png" class="card-img-top" alt="O'Learys">
+            <div class="card-body">
+              <h5 class="card-title">O'Learys</h5>
+              <p class="card-text" data-i18n="olearys_text">The largest sports bar and restaurant in Latvia! Bowling, billiards, VR and more.</p>
+              <a href="https://play.google.com/store/apps/details?id=com.FruitApps.CrossDrive" target="_blank" class="btn btn-play w-100">Google Play</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 2 -->
+        <div class="col-md-6 col-lg-3">
+          <div class="card h-100 shadow-sm">
+            <div class="card-header-accent accent-2"></div>
+            <img src="https://www.intergameonline.com/uploads/images/posts/0lympic_logo_2005_sin.taust___c20ad4.jpg" class="card-img-top" alt="Olympic">
+            <div class="card-body">
+              <h5 class="card-title">Olympic</h5>
+              <p class="card-text" data-i18n="olympic_text">Casino with modern bars, slot machines, cocktails and music evenings.</p>
+              <a href="https://play.google.com/store/apps/details?id=com.FruitApps.DropTheBallGame" target="_blank" class="btn btn-play w-100">Google Play</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 3 -->
+        <div class="col-md-6 col-lg-3">
+          <div class="card h-100 shadow-sm">
+            <div class="card-header-accent accent-3"></div>
+            <img src="https://i.ibb.co/0px6wc1X/ezitis-migla-teika-1.jpg" class="card-img-top" alt="Ezītis Miglā">
+            <div class="card-body">
+              <h5 class="card-title">Ezītis Miglā</h5>
+              <p class="card-text" data-i18n="ezitis_text">Famous chain of restaurants in Latvia with delicious food and cocktails.</p>
+              <a href="https://play.google.com/store/apps/details?id=com.FruitApps.JumpToStep" target="_blank" class="btn btn-play w-100">Google Play</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 4 -->
+        <div class="col-md-6 col-lg-3">
+          <div class="card h-100 shadow-sm">
+            <div class="card-header-accent accent-4"></div>
+            <img src="https://i.postimg.cc/yY5nwk8T/72ef5595-1edc-4d18-9fbe-c2f0b5061b43-ALV-Uj-VBQW8-SSF2-UCt0f-Dg-K3-XW6-UPede-Bwlp-XLp-ADJAT9m3nzz-Z3-XNQ-1.png" class="card-img-top" alt="Skypark">
+            <div class="card-body">
+              <h5 class="card-title">Skypark</h5>
+              <p class="card-text" data-i18n="skypark_text">Entertainment center with trampolines, amusement park, racetrack and laser tag.</p>
+              <a href="https://play.google.com/store/apps/details?id=com.FruitApps.PerfectStop" target="_blank" class="btn btn-play w-100">Google Play</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- About -->
+    <section id="about" class="container py-5">
+      <h3 class="text-center mb-4" data-i18n="about_title">О нас</h3>
+      <div class="row g-4">
+        <div class="col-md-6">
+          <p data-i18n="about_left">Мы создаем RentIT с той же заботой, с какой вы выбираете нужные вам вещи.<br><b>Наша цель</b> — сделать аренду доступной, простой и удобной для каждого!</p>
+        </div>
+        <div class="col-md-6">
+          <p data-i18n="about_right">Каждое предложение проходит проверку перед публикацией. Мы заботимся о том, чтобы аренда была качественной, быстрой и без лишних хлопот.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact" class="container py-5">
+      <h3 class="text-center mb-4" data-i18n="contact_title">Свяжитесь с нами</h3>
+      <form class="mx-auto" style="max-width:600px;">
+        <div class="mb-3"><input type="text" class="form-control" placeholder="Name" required></div>
+        <div class="mb-3"><input type="email" class="form-control" placeholder="Email" required></div>
+        <div class="mb-3"><input type="text" class="form-control" placeholder="Theme"></div>
+        <div class="mb-3"><textarea class="form-control" rows="5" placeholder="Message" required></textarea></div>
+        <button type="submit" class="btn btn-play w-100" data-i18n="contact_button">Отправить</button>
+      </form>
+    </section>
+  </main>
+
+  <footer class="text-center">
+    <div class="container">
+      <p class="mb-1" data-i18n="footer_text">© 2025 RentIT. All rights reserved</p>
+      <p>
+        <a href="#" class="text-white">Facebook</a> ·
+        <a href="#" class="text-white">Instagram</a> ·
+        <a href="#" class="text-white">Twitter</a>
+      </p>
+    </div>
+  </footer>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+  <script>
+    // Переводы (ru / en / lv)
+    const translations = {
+      ru: {
+        brand: "RentIT",
+        nav_places: "Места",
+        nav_about: "О нас",
+        nav_contact: "Контакты",
+        header_title: "Арендуй сейчас — спасибо скажешь потом",
+        header_subtitle: "Лучшие предложения для вас",
+        olearys_text: "O'Learys – крупнейший спортивный бар и ресторан в Латвии! Более 70 экранов, боулинг, бильярд, VR и симуляторы.",
+        olympic_text: "Казино Olympic — это больше, чем слоты: стильный интерьер, лаунж-зоны, бары, коктейли и музыкальные вечера.",
+        ezitis_text: "Популярная сеть ресторанов с уютной атмосферой, вкусной едой и фирменными коктейлями.",
+        skypark_text: "Семейный центр: батуты, парк аттракционов, 20 залов, картинг и лазертаг.",
+        about_title: "О нас",
+        about_left: "Мы создаем RentIT с той же заботой, с какой вы выбираете нужные вам вещи.<br><b>Наша цель</b> — сделать аренду доступной, простой и удобной для каждого!",
+        about_right: "Каждое предложение проходит проверку перед публикацией. Мы заботимся о том, чтобы аренда была качественной, быстрой и без лишних хлопот.",
+        contact_title: "Свяжитесь с нами",
+        contact_button: "Отправить",
+        footer_text: "© 2025 RentIT. Все права защищены",
+        login: "Войти",
+        register: "Регистрация"
+      },
+      en: {
+        brand: "RentIT",
+        nav_places: "Places",
+        nav_about: "About",
+        nav_contact: "Contact",
+        header_title: "Rent Now, Thank Us Later",
+        header_subtitle: "The best options for you",
+        olearys_text: "O'Learys – the largest sports bar and restaurant in Latvia! 70+ screens, bowling, billiards, VR and simulators.",
+        olympic_text: "Olympic Casino is more than slots: stylish design, lounges, bars, cocktails and music nights.",
+        ezitis_text: "A popular restaurant chain with cozy atmosphere, delicious food and cocktails.",
+        skypark_text: "Family center: trampolines, amusement park, 20 rooms, karting and laser tag.",
+        about_title: "About us",
+        about_left: "We create RentIT with the same care as you choose what you need. <br><b>Our goal</b> is to make renting affordable, simple and convenient for everyone!",
+        about_right: "Every offer is verified before publishing. We ensure renting is high-quality, quick and hassle free.",
+        contact_title: "Contact us",
+        contact_button: "Send message",
+        footer_text: "© 2025 RentIT. All rights reserved",
+        login: "Login",
+        register: "Sign up"
+      },
+      lv: {
+        brand: "RentIT",
+        nav_places: "Vietas",
+        nav_about: "Par mums",
+        nav_contact: "Kontakti",
+        header_title: "Īrē tagad — pateiksies vēlāk",
+        header_subtitle: "Labākās iespējas jums",
+        olearys_text: "O'Learys – lielākais sporta bārs un restorāns Latvijā! Vairāk nekā 70 ekrāni, boulinga, biljards, VR un simulatori.",
+        olympic_text: "Olympic Casino ir vairāk nekā spēļu automāti: stilīgs interjers, atpūtas zonas, bāri, kokteiļi un mūzikas vakari.",
+        ezitis_text: "Populārs restorānu tīkls ar mājīgu atmosfēru, garšīgu ēdienu un kokteiļiem.",
+        skypark_text: "Ģimenes centrs: batuti, atrakciju parks, 20 telpas, kartings un lāzertags.",
+        about_title: "Par mums",
+        about_left: "Mēs radām RentIT ar tādu pašu rūpību kā jūs izvēlaties sev nepieciešamo. <br><b>Mūsu mērķis</b> ir padarīt īri pieejamu, vienkāršu un ērtu ikvienam!",
+        about_right: "Katrs piedāvājums tiek pārbaudīts pirms publicēšanas. Mēs nodrošinām, ka īre ir kvalitatīva, ātra un bez liekām problēmām.",
+        contact_title: "Sazinies ar mums",
+        contact_button: "Sūtīt ziņu",
+        footer_text: "© 2025 RentIT. Visas tiesības aizsargātas",
+        login: "Ieiet",
+        register: "Reģistrēties"
+      }
+    };
+
+    // Устанавливает язык: заменяет innerHTML у элементов с data-i18n
+    function setLanguage(lang) {
+      document.querySelectorAll('[data-i18n]').forEach(node => {
+        const key = node.getAttribute('data-i18n');
+        if (translations[lang] && translations[lang][key] !== undefined) {
+          node.innerHTML = translations[lang][key];
+        }
+      });
+      // Обновить навбар и кнопку языка
+      const langBtn = document.querySelector('.lang-select button');
+      if (langBtn) {
+        langBtn.textContent = lang === 'ru' ? 'Русский' : (lang === 'en' ? 'English' : 'Latviešu');
+      }
+      localStorage.setItem('site_lang', lang);
+    }
+
+    // Навешиваем обработчики на элементы выбора языка
+    document.querySelectorAll('[data-lang]').forEach(el => {
+      el.addEventListener('click', function(e){
+        e.preventDefault();
+        const lang = this.getAttribute('data-lang');
+        setLanguage(lang);
+      });
+    });
+
+    // При загрузке — применим сохранённый язык (или русский по умолчанию)
+    window.addEventListener('DOMContentLoaded', function(){
+      const saved = localStorage.getItem('site_lang') || 'ru';
+      // выставим текст кнопки и применим переводы
+      const matching = document.querySelector(`[data-lang="${saved}"]`);
+      if (matching) {
+        // обновим текст кнопки
+        const langBtn = document.querySelector('.lang-select button');
+        if (langBtn) langBtn.textContent = matching.textContent;
+      }
+      setLanguage(saved);
+    });
+  </script>
 </body>
 </html>
