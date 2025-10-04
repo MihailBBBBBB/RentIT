@@ -1,308 +1,209 @@
-<!DOCTYPE html>
-<html lang='ru'>
+<!doctype html>
+<html lang="en">
 <head>
-	<meta charset='UTF-8'>
-	<meta name='robots' content='index,follow,noodp,noydir'>
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<meta http-equiv='X-UA-Compatible' content='ie=edge'>
-	<title>Мобильные видеоигры</title>
-	<meta name='description' content='Здесь представлены все видео игры, созданные нашей компанией.'>
-	<meta name='keywords' content='игры, мобильные, app store, google play'>
-	<meta property='og:title' content='Мобильные видеоигры'>
-	<meta property='og:site_name' content='Мобильные видеоигры'>
-	<meta property='og:description' content='Здесь представлены все видео игры, созданные нашей компанией.'>
-	<link rel='stylesheet' href='https://crafty.site/css/main.css' type='text/css' charset='utf-8'>
-	<link rel='stylesheet' href='css/offers.css?chache=167395' type='text/css' charset='utf-8'>
-	<link
-            href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
-            rel="stylesheet"
-            integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
-            crossorigin="anonymous"
-        />
-	<link type='image/png' href='https://crafty.site/img/favicon.png' rel='shortcut icon' />
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>RentIT</title>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+  <link rel="stylesheet" href="css/index.css">
+  <script src="https://js.stripe.com/v3/"></script>
 </head>
 <body>
-	<div id='wrapper'>
-		<header class="simple-block p-3 mb-3 border-bottom" id="simple-block-1">
-			<nav class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start bg-light" style="border-radius: 20px; padding-top: 10px; padding-bottom: 10px;">
-				<a href="/" class="d-flex align-items-center mb-2 mb-lg-0 text-dark text-decoration-none">
-          			<svg class="bi me-2" width="18" height="32" role="img" aria-label="Bootstrap">
-						<use xlink:href="#bootstrap"></use>
-					</svg>
-        		</a>
+  <!-- Header -->
+  <header class="header">
+    <div class="brand">
+      <img src="https://cdn-icons-png.flaticon.com/512/742/742751.png" alt="Logo" />
+      <strong>RentIT</strong>
+    </div>
+    <nav class="nav">
+      <a href="#" class="nav-link active">Home</a>
+      <a href="#popular-h" class="nav-link">Popular</a>
+      <a href="offers.html" class="nav-link">Catalog</a>
+      <a href="#map" class="nav-link">Map</a>
+      <a href="support_ticket.html" class="nav-link">Support</a>
+      <a href="#" class="nav-link">Donate</a>
+    </nav>
+    <div class="account">
+      <div class="balance">0.00 €</div>
+      <button class="btn topup">Top up</button>
+      <button class="btn primary login">Login / Register</button>
+    </div>
+  </header>
 
-				<ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
-					<li><a href="index.html"><img src="https://crafty.site/projects/YazNo1NKsOIx/img/1756974340.png" alt="Изображение" style="width: 45px; height: 45px; margin-right: 20px;"></a></li>
-					<li><a href="offers.html" class="nav-link px-2 link-dark">Places</a></li>
-					<li><a href="#" class="nav-link px-2 link-dark">Companies</a></li>
-					<li><a href="#" class="nav-link px-2 link-dark">Map</a></li>
-					<li><a href="" class="nav-link px-2 link-dark">About us</a></li>
-				</ul>
+  <div class="container">
+    <header class="header-block">
+      <!-- Левая часть -->
+      <div class="header-left">
+        <h1>Book the Perfect Spot with RentIT</h1>
+        <p>Restaurants, bars, billiard halls, clubs, gyms — discover, compare, and reserve instantly. Reviews, likes, secure balance top-ups, and PDF receipts included.</p>
 
-				<form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" style="margin-top: 10px;">
-					<input type="search" class="form-control" placeholder="Search..." aria-label="Search">
-				</form>
+        <div class="filters">
+          <input type="text" placeholder="Try: Restaurant, Club..." />
+          <select>
+            <option value="">All</option>
+            <option>Restaurant</option>
+            <option>Bar</option>
+            <option>Gym</option>
+            <option>Club</option>
+          </select>
+          <select>
+            <option>All Ratings</option>
+            <option>★ 4+</option>
+            <option>★ 3+</option>
+          </select>
+          <select>
+            <option>Popular</option>
+            <option>Rating High → Low</option>
+            <option>Price Low → High</option>
+          </select>
+          <button class="btn primary">Apply Filters</button>
+          <a href="offers.html">Browse All</a>
+        </div>
 
-				<div class="dropdown text-end" style="padding-right: 20px">
-					<a href="#" class="d-block link-dark text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
-						<img src="https://github.com/mdo.png" alt="mdo" width="32" height="32" class="rounded-circle">
-					</a>
-					<ul class="dropdown-menu text-small" aria-labelledby="dropdownUser1">
-						<li><a class="dropdown-item" href="#">New project...</a></li>
-						<li><a class="dropdown-item" href="#">Settings</a></li>
-						<li><a class="dropdown-item" href="#">Profile</a></li>
-						<li><hr class="dropdown-divider"></li>
-						<li><a class="dropdown-item" href="#">Sign out</a></li>
-					</ul>
-				</div>
-			</nav>
-			<h1 class="text-block" id="text-block-1">RentIT</h1>
-			<div class="divider-block" id="divider-block-1">
-				<hr>
-			</div>
-			<h2 class="text-block" id="text-block-2">Rent Now, Thank Us Later.</h2>
-			<div class="divider-block" id="divider-block-3">
-				<hr>
-			</div>
-		</header>
-		<div class="simple-block divider-diagonal" id="simple-block-2">
-			<p class="text-block" id="text-block-3">THE BEST OPTIONS FOR YOU</p>
-			<div class="colums-block four" id="colums-block-1">
-				<div class="">
-					<div class="image-block" id="image-block-1">
-						<img src="https://i.postimg.cc/yYf2W1YJ/OLearys-1-1.png" alt="Изображение">
-					</div>
-					<p class="text-block" id="text-block-4"><b>O'Learys</b></p>
-					<p class="text-block" id="text-block-8">O'Learys – The largest sports bar and restaurant in Latvia!
-More than 70 TV screens, bowling, billiards, virtual reality and sports simulators.</p>
-					<div class="divider-block" id="divider-block-4">
-						<hr>
-					</div>
-					<div class="button-block-clear" id="button-block-clear-1">
-						<a href="https://play.google.com/store/apps/details?id=com.FruitApps.CrossDrive" target="_blank">
-							<button class="button-block" id="button-block-1">Google Play</button>
-						</a>
-					</div>
-					<div class="divider-block" id="divider-block-8">
-						<hr>
-					</div>
-				</div>
-				<div class="">
-					<div class="image-block" id="image-block-2">
-						<img src="https://www.intergameonline.com/uploads/images/posts/0lympic_logo_2005_sin.taust___c20ad4.jpg" alt="Изображение">
-					</div>
-					<p class="text-block" id="text-block-6"><b>Olympic</b></p>
-					<p class="text-block" id="text-block-11">Olympic Casino is much more than just table games or slot machines: with its unique interior design, comfortable lounge areas, modern sports bars and betting shops, delicious cocktails and music evenings, it is a great entertainment venue for all tastes. </p>
-					<div class="divider-block" id="divider-block-5">
-						<hr>
-					</div>
-					<div class="button-block-clear" id="button-block-clear-2">
-						<a href="https://play.google.com/store/apps/details?id=com.FruitApps.DropTheBallGame" target="_blank">
-							<button class="button-block" id="button-block-2">Google Play</button>
-						</a>
-					</div>
-					<div class="divider-block" id="divider-block-9">
-						<hr>
-					</div>
-				</div>
-				<div class="">
-					<div class="image-block" id="image-block-3">
-						<img src="https://i.ibb.co/0px6wc1X/ezitis-migla-teika-1.jpg" alt="Изображение">
-					</div>
-					<p class="text-block" id="text-block-7"><b>Ezitis Migla</b></p>
-					<p class="text-block" id="text-block-10">This popular chain of restaurants in Latvia known for its unique atmosphere, delicious food and great cocktails is very popular among the locals. If you see a sign with a hedgehog, you can be sure that you will be warmly welcomed and heartily served.</p>
-					<div class="divider-block" id="divider-block-7">
-						<hr>
-					</div>
-					<div class="button-block-clear" id="button-block-clear-4">
-						<a href="https://play.google.com/store/apps/details?id=com.FruitApps.JumpToStep" target="_blank">
-							<button class="button-block" id="button-block-4">Google Play</button>
-						</a>
-					</div>
-					<div class="divider-block" id="divider-block-11">
-						<hr>
-					</div>
-				</div>
-				<div class="">
-					<div class="image-block" id="image-block-4">
-						<img src="https://i.postimg.cc/yY5nwk8T/72ef5595-1edc-4d18-9fbe-c2f0b5061b43-ALV-Uj-VBQW8-SSF2-UCt0f-Dg-K3-XW6-UPede-Bwlp-XLp-ADJAT9m3nzz-Z3-XNQ-1.png" alt="Perfect Stop">
-					</div>
-					<p class="text-block" id="text-block-5"><b>Skypark</b></p>
-					<p class="text-block" id="text-block-9">An entertainment center for the whole family, which includes a huge trampoline area, a children's amusement park on four floors, 20 party rooms, a racetrack and an impressive laser tag arena, providing unique emotions and joy.</p>
-					<div class="divider-block" id="divider-block-6">
-						<hr>
-					</div>
-					<div class="button-block-clear" id="button-block-clear-3">
-						<a href="https://play.google.com/store/apps/details?id=com.FruitApps.PerfectStop" target="_blank">
-							<button class="button-block" id="button-block-3">Google Play</button>
-						</a>
-					</div>
-					<div class="divider-block" id="divider-block-10">
-						<hr>
-					</div>
-				</div>
-			</div>
-		</div>
-		<div class="simple-block" id="simple-block-6">
-			<h3 class="text-block" id="text-block-12">Something about us</h3>
-			<div class="divider-block" id="divider-block-12">
-				<hr>
-			</div>
-			<div class="block-inside" id="block-inside-1">
-				<div class="colums-block two">
-					<div class="">
-						<p class="text-block" id="text-block-22">We create RentIT with the same care and attention that you put into choosing the item you need right now.<br><b>Our goal</b> is to make renting affordable, simple, and convenient for everyone!</p>
-					</div>
-					<div class="">
-						<p class="text-block" id="text-block-23">Every offer undergoes a verification process before it is posted on the website. We make sure that it is of high quality, relevant, and convenient so that you can enjoy renting — simply, quickly, and without any hassle!</p>
-					</div>
-				</div>
-				<div class="divider-block" id="divider-block-13">
-					<hr>
-				</div>
-				<div class="colums-block two">
-					<div class="">
-						<div class="button-block-clear" id="button-block-clear-11">
-							<a href="https://play.google.com/store/apps/developer?id=Fruit+Apps" target="_blank">
-								<button class="button-block" id="button-block-11">Page in FaceBook</button>
-							</a>
-						</div>
-					</div>
-					<div class="">
-						<div class="button-block-clear" id="button-block-clear-12">
-							<a href="https://itunes.apple.com/us/developer/george-dudar/id1040555150" target="_blank">
-								<button class="button-block" id="button-block-12">Page in Instagram</button>
-							</a>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-		<div class="simple-block" id="simple-block-4">
-			<p class="text-block" id="text-block-15">If you have questions.</p>
-			<div class="divider-block" id="divider-block-14">
-				<hr>
-			</div>
-			<form class="form-block" action="" method="post" id="form-block-1" onsubmit="return sendForm ('#form-block-1', event)">
-				<input type="text" name="name" placeholder="Имя">
-				<input type="email" name="email" placeholder="Email">
-				<input type="text" name="subject" placeholder="Тема сообщения">
-				<textarea name="message" placeholder="Сообщение"></textarea>
-				<button class="button-block">Send a message</button>
-				<div class="message">
-				</div>
-			</form>
-		</div>
-		<div class="simple-block divider-ears" id="simple-block-7">
-			<div class="colums-block three" id="colums-block-4">
-				<div class="">
-					<p class="text-block" id="text-block-17"><b>Address</b></p>
-					<p class="text-block" id="text-block-20">Our address:<br>Bultu iela 7</p>
-				</div>
-				<div class="">
-					<p class="text-block" id="text-block-18"><b>Share our website</b></p>
-					<div class="social-buttons" id="social-buttons-14">
-						<script src="https://yastatic.net/es5-shims/0.0.2/es5-shims.min.js">
-						</script>
-						<script src="https://yastatic.net/share2/share.js">
-						</script>
-						<div class="ya-share2" data-services="gplus,twitter,telegram">
-						</div>
-					</div>
-				</div>
-				<div class="">
-					<p class="text-block" id="text-block-19"><b>Contacts</b></p>
-					<p class="text-block" id="text-block-21">**+371 27582757*<br>ar.sulgan@gmail.com</p>
-				</div>
-			</div>
-		</div>
-		<footer class="simple-block" id="simple-block-5">
-			<p class="text-block" id="text-block-16">All rights reserved @</p>
-		</footer>
+        <div class="verified-info">
+          <span>⭐ Verified Reviews</span>
+          <span>📍 Map View</span>
+          <span>📄 PDF Receipts</span>
+        </div>
+      </div>
 
-	<!-- Конец HTML файла -->
-	</div>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<script>
-$("head").append("<link rel='stylesheet' href='https://crafty.site/css/dividers.css' type='text/css' charset='utf-8'>");
-</script>
-<script>
-resizeText ();
+      <!-- Правая часть -->
+      <div class="header-right">
+        <img src="https://images.unsplash.com/photo-1541542684-3b7b49d4f6b2?q=80&w=1400&auto=format&fit=crop" alt="Restaurant" />
+      </div>
+    </header>
 
-$(window).resize(function() {
-	resizeText ();
-});
+    <!-- Popular -->
+    <section class="section">
+      <h3 id="popular-h">Most Popular Venues</h3>
+      <div id="popular" class="popular"></div>
+    </section>
 
-function resizeText () {
-	$(".text-block").removeAttr ("style");
-	$(".text-block").each (function () {
-		var size = $(this).css ("font-size");
-		if ($(window).width () < 400 && parseInt (size) > 30)
-			$(this).css ("font-size", "30px");
-		else if ($(window).width () < 500 && parseInt (size) > 40)
-			$(this).css ("font-size", "40px");
-		else if ($(window).width () < 700 && parseInt (size) > 50)
-			$(this).css ("font-size", "50px");
-		else if ($(window).width () < 850 && parseInt (size) > 65)
-			$(this).css ("font-size", "65px");
-		else if ($(window).width () < 1000 && parseInt (size) > 80)
-			$(this).css ("font-size", "80px");
-	});
-}
-</script>
-<script>
-function sendForm (form, ev) {
-	ev.preventDefault();
-	var name = '%%NOTHING%%', phone = '%%NOTHING%%', email, subject = '%%NOTHING%%', message = '%%NOTHING%%';
-	if ($(form + " [name='name']").is(":visible"))
-		name = $(form + " [name='name']").val ();
-	if ($(form + " [name='phone']").is(":visible"))
-		phone = $(form + " [name='phone']").val ();
-	if ($(form + " [name='subject']").is(":visible"))
-		subject = $(form + " [name='subject']").val ();
-	if ($(form + " [name='message']").is(":visible"))
-		message = $(form + " [name='message']").val ();
-	var email = $(form + " [name='email']").val ();
-	$.ajax({
-		url:		'ajax/mail.php',
-		type:		'POST',
-		cache:		false,
-		data:		{'name':name, 'phone':phone, 'email':email, 'subject':subject, 'message':message},
-		dataType:	'html',
-		beforeSend: function () {
-			$(form + " .button-block").prop('disabled', true);
-		},
-		success: function(data) {
-			if (data == true) {
-				if (name != '')
-					$(form + " [name='name']").val ("");
-				if (phone != '')
-					$(form + " [name='phone']").val ("");
-				$(form + " [name='email']").val ("");
-				if (subject != '')
-					$(form + " [name='subject']").val ("");
-				if (message != '')
-					$(form + " [name='message']").val ("");
-				$(form + " .button-block").text ("Отправлено");
-				$(form + " .message").text('');
-			} else {
-				if (data == false)
-					$(form + " .message").text ("Проблема с сервером!");
-				else {
-					switch (data) {
-						case "name": $(form + " .message").text ("Имя не указано"); break;
-						case "phone": $(form + " .message").text ("Телефон указан неверно"); break;
-						case "email": $(form + " .message").text ("Email указан неверно"); break;
-						case "subject": $(form + " .message").text ("Тема не указана"); break;
-						case "message": $(form + " .message").text ("Сообщение не написано"); break;
-						default: $(form + " .message").text ("Какие-либо поля не заполнены");
-					}
-				}
-			}
-			$(form + " .button-block").prop('disabled', false);
-		}
-	});
-}
-</script>
+    <!-- Catalog -->
+    <section class="section">
+      <h3>Venue Catalog</h3>
+      <div id="catalog" class="catalog"></div>
+    </section>
+
+    <!-- Map -->
+    <section class="map-wrap">
+      <div id="map"></div>
+      <aside class="nearby">
+        <h4>Map & Nearby</h4>
+        <div id="nearbyList"></div>
+      </aside>
+    </section>
+  </div>
+
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script>
+    // Fake auth toggle
+    function login(){
+      document.getElementById("navGuest").style.display="none";
+      document.getElementById("navUser").style.display="flex";
+    }
+
+    const venues = [
+      {id:1,name:"Iron Forge Gym",category:"Gym",rating:4.7,price:20,popular:true,
+       address:"Alexanderplatz 7, Berlin",img:"https://images.unsplash.com/photo-1546484959-f606fbfbe0d9?q=80&w=600",lat:52.52,lng:13.41},
+      {id:2,name:"Emerald Billiards",category:"Bar",rating:4.3,price:30,popular:true,
+       address:"Rosenstraße 42, Berlin",img:"https://images.unsplash.com/photo-1496307042754-b4aa456c4a2d?q=80&w=600",lat:52.519,lng:13.406},
+      {id:3,name:"Blue Orchid Restaurant",category:"Restaurant",rating:4.8,price:45,popular:true,
+       address:"Friedrichstraße 45, Berlin",img:"https://images.unsplash.com/photo-1528605248644-14dd04022da1?q=80&w=600",lat:52.52,lng:13.39},
+      {id:4,name:"Golden Tap Bar",category:"Bar",rating:4.1,price:22,popular:false,
+       address:"Oranienburger Str. 21, Berlin",img:"https://images.unsplash.com/photo-1504674900247-0877df9cc836?q=80&w=600",lat:52.521,lng:13.39},
+      {id:5,name:"Neon Night Club",category:"Club",rating:4.6,price:35,popular:true,
+       address:"Revaler Str. 99, Berlin",img:"https://images.unsplash.com/photo-1506159433264-53e4d0a3f8b9?q=80&w=600",lat:52.503,lng:13.449},
+      {id:6,name:"Riverside Dine",category:"Restaurant",rating:4.2,price:40,popular:false,
+       address:"Bankside 12, Berlin",img:"https://images.unsplash.com/photo-1504754524776-8f4f37790ca0?q=80&w=600",lat:52.507,lng:13.39}
+    ];
+
+    function renderPopular(list){
+      const el=document.getElementById("popular");el.innerHTML="";
+      list.filter(v=>v.popular).forEach(v=>{
+        el.innerHTML+=`
+          <div class="pop-card">
+            <img src="${v.img}" alt="${v.name}">
+            <div class="info">
+              <h4>${v.name}</h4>
+              <div class="meta">${v.category} • ${v.rating} ⭐</div>
+              <div class="meta">${v.address}</div>
+            </div>
+          </div>`;
+      });
+    }
+
+    function renderCatalog(list){
+      const el=document.getElementById("catalog");el.innerHTML="";
+      list.forEach(v=>{
+        el.innerHTML+=`
+          <div class="card">
+            <img src="${v.img}" alt="${v.name}">
+            <div class="content">
+              <div>
+                <h4>${v.name}</h4>
+                <div class="meta">${v.category} • ${v.address}</div>
+              </div>
+              <div class="bottom">
+                <div class="price">€${v.price} / hr</div>
+                <button class="btn primary">Book</button>
+              </div>
+            </div>
+          </div>`;
+      });
+    }
+
+    function renderNearby(list){
+      const el=document.getElementById("nearbyList");el.innerHTML="";
+      list.forEach(v=>{
+        el.innerHTML+=`
+          <div class="item">
+            <img src="${v.img}" alt="${v.name}">
+            <div>
+              <div style="font-weight:600">${v.name}</div>
+              <div class="meta">${v.category} • ${v.rating} ⭐</div>
+              <div class="meta">${v.address}</div>
+            </div>
+          </div>`;
+      });
+    }
+
+    function initMap(list){
+      const map=L.map('map').setView([52.52,13.405],12);
+      L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(map);
+      list.forEach(v=>{
+        L.marker([v.lat,v.lng]).addTo(map).bindPopup(`<b>${v.name}</b><br>${v.category} • ${v.rating}⭐`);
+      });
+    }
+
+    document.addEventListener("DOMContentLoaded",()=>{
+      renderPopular(venues);
+      renderCatalog(venues);
+      renderNearby(venues);
+      initMap(venues);
+    });
+
+    // Stripe Top Up
+    document.querySelector(".topup").addEventListener("click", async () => {
+      const stripe = Stripe("pk_test_51SEZ8zGeqy6qTxmFcGlEuNjOCqIomJ33hECHcPt31HYvwPBRA0f9zCbKeIkigcoiZjsFvYl1udX7v2ssqVXR3iGP00dvjVDK37"); // public key
+
+      // ⚠️ тут можно вставить input для суммы, пока фиксируем 10 €
+      const response = await fetch("http://localhost:5000/create-checkout-session", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ amount_cents: 1000, user_id: 1 })
+      });
+
+
+      const session = await response.json();
+
+      // Перенаправляем пользователя на Stripe Checkout
+      const result = await stripe.redirectToCheckout({ sessionId: session.id });
+
+      if (result.error) {
+        alert(result.error.message);
+      }
+    });
+  </script>
 </body>
 </html>
