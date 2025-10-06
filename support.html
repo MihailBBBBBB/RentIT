@@ -1,0 +1,147 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>RentIT Support</title>
+  <link rel="stylesheet" href="css/index.css">
+  <style>
+
+    h1 {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+
+    .faq-item {
+      background: #fff;
+      margin-bottom: 1rem;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .faq-question {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 1.5rem;
+      font-weight: 600;
+    }
+
+    .faq-answer {
+      max-height: 0;
+      overflow: hidden;
+      padding: 0 1.5rem;
+      transition: max-height 0.5s ease, padding 0.3s ease;
+    }
+
+    .faq-answer p {
+      margin: 1rem 0;
+    }
+
+    .faq-item.open .faq-answer {
+      max-height: 500px;
+      padding: 1rem 1.5rem;
+    }
+
+    .arrow {
+      transition: transform 0.3s ease;
+    }
+
+    .faq-item.open .arrow {
+      transform: rotate(90deg);
+    }
+
+    footer {
+      text-align: center;
+      padding: 1.5rem;
+      margin-top: 3rem;
+      color: #666;
+      background: #fff;
+      box-shadow: 0 -2px 4px rgba(0,0,0,0.05);
+    }
+  </style>
+</head>
+<body>
+  <header class="header">
+    <div class="brand">
+      <strong>RentIT</strong>
+    </div>
+    <nav class="nav">
+      <a href="index.html" class="nav-link">Home</a>
+      <a href="popular.html" class="nav-link">Popular</a>
+      <a href="offers.html" class="nav-link">Catalog</a>
+      <a href="support.html" class="nav-link active">Support</a>
+      <a href="#" class="nav-link">Donate</a>
+    </nav>
+    <div class="account">
+      <div class="balance">0.00 €</div>
+      <button class="btn topup">Top up</button>
+      <button class="btn primary login">Login / Register</button>
+    </div>
+  </header>
+
+  <div class="container">
+    <h1>Frequently Asked Questions</h1>
+
+    <div class="faq-item">
+      <div class="faq-question">
+        How do I top up my wallet?
+        <span class="arrow">▶</span>
+      </div>
+      <div class="faq-answer">
+        <p>You can top up your wallet by clicking the "Top up" button in the header and following the payment instructions via Stripe.</p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question">
+        How can I book a venue?
+        <span class="arrow">▶</span>
+      </div>
+      <div class="faq-answer">
+        <p>Browse the catalog, select a venue, and click the "Book" button. You can choose your time slot and confirm your reservation online.</p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question">
+        Can I cancel or reschedule my booking?
+        <span class="arrow">▶</span>
+      </div>
+      <div class="faq-answer">
+        <p>Yes, you can cancel or reschedule your booking from your account dashboard, as long as it is done at least 24 hours before the scheduled time.</p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question">
+        How do I contact support?
+        <span class="arrow">▶</span>
+      </div>
+      <div class="faq-answer">
+        <p>You can submit a support ticket using the "Support" page, or email us directly at support@rentit.com. We will respond within 24 hours.</p>
+      </div>
+    </div>
+  </div>
+
+  <footer>© 2025 RentIT. All rights reserved.</footer>
+
+  <script>
+    const faqItems = document.querySelectorAll('.faq-item');
+
+    faqItems.forEach(item => {
+      item.querySelector('.faq-question').addEventListener('click', () => {
+        // Закрываем все остальные
+        faqItems.forEach(el => {
+          if (el !== item) el.classList.remove('open');
+        });
+        // Переключаем текущий
+        item.classList.toggle('open');
+      });
+    });
+  </script>
+</body>
+</html>

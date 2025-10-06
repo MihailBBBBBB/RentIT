@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Popular Venues | RentIT</title>
+  <link rel="stylesheet" href="css/index.css">
+  <style>
+
+    .container {
+      max-width: 1100px;
+      margin: 2rem auto;
+      padding: 0 1rem;
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 1.5rem;
+    }
+
+    .popular-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .pop-card {
+      background: #fff;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .pop-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 8px 14px rgba(0,0,0,0.15);
+    }
+
+    .pop-card img {
+      width: 100%;
+      height: 220px;
+      object-fit: cover;
+    }
+
+    .pop-card .info {
+      padding: 1rem 1.2rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      flex: 1;
+    }
+
+    .pop-card h4 {
+      margin: 0 0 0.5rem;
+    }
+
+    .meta {
+      color: #777;
+      font-size: 0.9rem;
+    }
+
+    footer {
+      text-align: center;
+      padding: 1.5rem;
+      margin-top: 3rem;
+      color: #666;
+      background: #fff;
+      box-shadow: 0 -2px 4px rgba(0,0,0,0.05);
+    }
+  </style>
+</head>
+<body>
+  <header class="header">
+    <div class="brand">
+      <strong>RentIT</strong>
+    </div>
+    <nav class="nav">
+      <a href="index.html" class="nav-link">Home</a>
+      <a href="popular.html" class="nav-link active">Popular</a>
+      <a href="offers.html" class="nav-link">Catalog</a>
+      <a href="support.html" class="nav-link">Support</a>
+      <a href="#" class="nav-link">Donate</a>
+    </nav>
+    <div class="account">
+      <div class="balance">0.00 €</div>
+      <button class="btn topup">Top up</button>
+      <button class="btn primary login">Login / Register</button>
+    </div>
+  </header>
+
+  <div class="container">
+    <h1>🔥 Most Popular Venues</h1>
+    <p style="text-align:center; color:#666; margin-bottom:2rem;">Top-rated and most booked venues on RentIT — discover your next favorite place!</p>
+
+    <div id="popular" class="popular-grid"></div>
+  </div>
+
+  <footer>© 2025 RentIT. All rights reserved.</footer>
+
+  <script>
+    const venues = [
+      {id:1,name:"Iron Forge Gym",category:"Gym",rating:4.7,price:20,popular:true,
+       address:"Alexanderplatz 7, Berlin",img:"https://images.unsplash.com/photo-1546484959-f606fbfbe0d9?q=80&w=600"},
+      {id:2,name:"Emerald Billiards",category:"Bar",rating:4.3,price:30,popular:true,
+       address:"Rosenstraße 42, Berlin",img:"https://images.unsplash.com/photo-1496307042754-b4aa456c4a2d?q=80&w=600"},
+      {id:3,name:"Blue Orchid Restaurant",category:"Restaurant",rating:4.8,price:45,popular:true,
+       address:"Friedrichstraße 45, Berlin",img:"https://images.unsplash.com/photo-1528605248644-14dd04022da1?q=80&w=600"},
+      {id:4,name:"Neon Night Club",category:"Club",rating:4.6,price:35,popular:true,
+       address:"Revaler Str. 99, Berlin",img:"https://images.unsplash.com/photo-1506159433264-53e4d0a3f8b9?q=80&w=600"},
+      {id:5,name:"Riverside Dine",category:"Restaurant",rating:4.5,price:40,popular:true,
+       address:"Bankside 12, Berlin",img:"https://images.unsplash.com/photo-1504754524776-8f4f37790ca0?q=80&w=600"}
+    ];
+
+    function renderPopular(list){
+      const el = document.getElementById("popular");
+      el.innerHTML = "";
+      list.filter(v => v.popular).forEach(v => {
+        el.innerHTML += `
+          <div class="pop-card">
+            <img src="${v.img}" alt="${v.name}">
+            <div class="info">
+              <div>
+                <h4>${v.name}</h4>
+                <div class="meta">${v.category} • ${v.rating} ⭐</div>
+                <div class="meta">${v.address}</div>
+              </div>
+              <div style="margin-top:1rem; display:flex; justify-content:space-between; align-items:center;">
+                <div style="font-weight:600;">€${v.price} / hr</div>
+                <button class="btn primary">Book</button>
+              </div>
+            </div>
+          </div>
+        `;
+      });
+    }
+
+    document.addEventListener("DOMContentLoaded", () => renderPopular(venues));
+  </script>
+</body>
+</html>
