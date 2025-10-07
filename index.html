@@ -7,32 +7,112 @@
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
   <link rel="stylesheet" href="css/index.css">
   <script src="https://js.stripe.com/v3/"></script>
+
+  <style>
+    /* === Популярные (увеличенные карточки) === */
+    .popular {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1.5rem;
+    }
+    .pop-card {
+      background: #fff;
+      border-radius: 12px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      overflow: hidden;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      display: flex;
+      flex-direction: column;
+    }
+    .pop-card img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+    }
+    .pop-card .info {
+      padding: 1rem;
+      flex-grow: 1;
+    }
+    .pop-card h4 {
+      margin: 0 0 0.5rem;
+    }
+    .pop-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 16px rgba(0,0,0,0.15);
+    }
+
+    /* === Каталог (уменьшенные карточки) === */
+    .catalog {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1rem;
+    }
+    .catalog .card {
+      background: #fff;
+      border-radius: 10px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      overflow: hidden;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .catalog .card img {
+      width: 100%;
+      height: 140px;
+      object-fit: cover;
+    }
+    .catalog .content {
+      padding: 0.8rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      height: 130px;
+    }
+    .catalog .bottom {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 0.5rem;
+    }
+    .catalog .card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 6px 12px rgba(0,0,0,0.12);
+    }
+
+    .meta {
+      color: #666;
+      font-size: 0.9rem;
+    }
+
+    footer {
+      text-align: center;
+      padding: 1.5rem;
+      margin-top: 3rem;
+      color: #666;
+      background: #fff;
+      box-shadow: 0 -2px 4px rgba(0,0,0,0.05);
+    }
+  </style>
 </head>
 <body>
-  <!-- Header -->
   <header class="header">
     <div class="brand">
-      <img src="https://cdn-icons-png.flaticon.com/512/742/742751.png" alt="Logo" />
       <strong>RentIT</strong>
     </div>
     <nav class="nav">
       <a href="#" class="nav-link active">Home</a>
-      <a href="#popular-h" class="nav-link">Popular</a>
+      <a href="popular.html" class="nav-link">Popular</a>
       <a href="offers.html" class="nav-link">Catalog</a>
-      <a href="#map" class="nav-link">Map</a>
-      <a href="support_ticket.html" class="nav-link">Support</a>
+      <a href="support.html" class="nav-link">Support</a>
       <a href="#" class="nav-link">Donate</a>
     </nav>
     <div class="account">
       <div class="balance">0.00 €</div>
-      <button class="btn topup">Top up</button>
+      <a href="deposit_wallet.html"><button class="btn topup">Top up</button></a>
       <button class="btn primary login">Login / Register</button>
     </div>
   </header>
 
   <div class="container">
     <header class="header-block">
-      <!-- Левая часть -->
       <div class="header-left">
         <h1>Book the Perfect Spot with RentIT</h1>
         <p>Restaurants, bars, billiard halls, clubs, gyms — discover, compare, and reserve instantly. Reviews, likes, secure balance top-ups, and PDF receipts included.</p>
@@ -67,9 +147,8 @@
         </div>
       </div>
 
-      <!-- Правая часть -->
       <div class="header-right">
-        <img src="https://images.unsplash.com/photo-1541542684-3b7b49d4f6b2?q=80&w=1400&auto=format&fit=crop" alt="Restaurant" />
+        <img src="img/situations.jpg" alt="Restaurant" />
       </div>
     </header>
 
@@ -95,14 +174,10 @@
     </section>
   </div>
 
+  <footer>© 2025 RentIT. All rights reserved.</footer>
+
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
   <script>
-    // Fake auth toggle
-    function login(){
-      document.getElementById("navGuest").style.display="none";
-      document.getElementById("navUser").style.display="flex";
-    }
-
     const venues = [
       {id:1,name:"Iron Forge Gym",category:"Gym",rating:4.7,price:20,popular:true,
        address:"Alexanderplatz 7, Berlin",img:"https://images.unsplash.com/photo-1546484959-f606fbfbe0d9?q=80&w=600",lat:52.52,lng:13.41},
@@ -112,7 +187,7 @@
        address:"Friedrichstraße 45, Berlin",img:"https://images.unsplash.com/photo-1528605248644-14dd04022da1?q=80&w=600",lat:52.52,lng:13.39},
       {id:4,name:"Golden Tap Bar",category:"Bar",rating:4.1,price:22,popular:false,
        address:"Oranienburger Str. 21, Berlin",img:"https://images.unsplash.com/photo-1504674900247-0877df9cc836?q=80&w=600",lat:52.521,lng:13.39},
-      {id:5,name:"Neon Night Club",category:"Club",rating:4.6,price:35,popular:true,
+      {id:5,name:"Neon Night Club",category:"Club",rating:4.6,price:35,popular:false,
        address:"Revaler Str. 99, Berlin",img:"https://images.unsplash.com/photo-1506159433264-53e4d0a3f8b9?q=80&w=600",lat:52.503,lng:13.449},
       {id:6,name:"Riverside Dine",category:"Restaurant",rating:4.2,price:40,popular:false,
        address:"Bankside 12, Berlin",img:"https://images.unsplash.com/photo-1504754524776-8f4f37790ca0?q=80&w=600",lat:52.507,lng:13.39}
@@ -181,28 +256,6 @@
       renderCatalog(venues);
       renderNearby(venues);
       initMap(venues);
-    });
-
-    // Stripe Top Up
-    document.querySelector(".topup").addEventListener("click", async () => {
-      const stripe = Stripe("pk_test_51SEZ8zGeqy6qTxmFcGlEuNjOCqIomJ33hECHcPt31HYvwPBRA0f9zCbKeIkigcoiZjsFvYl1udX7v2ssqVXR3iGP00dvjVDK37"); // public key
-
-      // ⚠️ тут можно вставить input для суммы, пока фиксируем 10 €
-      const response = await fetch("http://localhost:5000/create-checkout-session", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ amount_cents: 1000, user_id: 1 })
-      });
-
-
-      const session = await response.json();
-
-      // Перенаправляем пользователя на Stripe Checkout
-      const result = await stripe.redirectToCheckout({ sessionId: session.id });
-
-      if (result.error) {
-        alert(result.error.message);
-      }
     });
   </script>
 </body>
