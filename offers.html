@@ -5,184 +5,27 @@
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <title>All Offers | RentIT</title>
   <link rel="stylesheet" href="css/index.css">
-  <style>
-    :root {
-      --accent: #2563eb;
-      --muted: #6b7280;
-      --bg: #f8fafc;
-      --radius: 14px;
-      --shadow: 0 6px 20px rgba(16,24,40,0.08);
-      font-family: Inter, system-ui, sans-serif;
-    }
-
-    body {
-      margin: 0;
-      background: var(--bg);
-      color: #111827;
-    }
-
-    /* Header */
-    header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 12px 24px;
-      background: #fff;
-      box-shadow: var(--shadow);
-      border-radius: 0 0 var(--radius) var(--radius);
-    }
-
-    .brand {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      font-weight: 700;
-      font-size: 18px;
-      color: #111827;
-    }
-
-    .brand img {
-      width: 32px;
-      height: 32px;
-      border-radius: 50%;
-    }
-
-    nav {
-      display: flex;
-      gap: 20px;
-    }
-
-    nav a {
-      text-decoration: none;
-      color: #4b5563;
-      font-weight: 500;
-      transition: 0.2s;
-    }
-
-    nav a:hover {
-      color: var(--accent);
-    }
-
-    .account {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-
-    .btn {
-      cursor: pointer;
-      border-radius: 8px;
-      border: 1px solid #ddd;
-      padding: 8px 14px;
-      font-weight: 500;
-      font-size: 14px;
-      background: #fff;
-      color: #111827;
-      transition: 0.2s;
-    }
-
-    .btn.primary {
-      background: var(--accent);
-      color: #fff;
-      border: none;
-    }
-
-    .btn.primary:hover {
-      background: #1d4ed8;
-    }
-
-    /* Container */
-    .container {
-      max-width: 1200px;
-      margin: 30px auto;
-      padding: 0 20px;
-    }
-
-    /* Catalog */
-    .section h3 {
-      font-size: 22px;
-      margin-bottom: 16px;
-    }
-
-    .catalog {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-      gap: 18px;
-    }
-
-    .card {
-      background: #fff;
-      border-radius: var(--radius);
-      box-shadow: var(--shadow);
-      overflow: hidden;
-      display: flex;
-      flex-direction: column;
-      transition: transform 0.15s ease-in-out;
-    }
-
-    .card:hover {
-      transform: scale(1.03);
-    }
-
-    .card img {
-      width: 100%;
-      height: 160px;
-      object-fit: cover;
-    }
-
-    .content {
-      padding: 14px;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      flex: 1;
-    }
-
-    .meta {
-      font-size: 13px;
-      color: var(--muted);
-    }
-
-    .bottom {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-top: 10px;
-    }
-
-    .price {
-      font-weight: 600;
-    }
-
-    footer {
-      text-align: center;
-      padding: 1.5rem;
-      margin-top: 3rem;
-      color: #666;
-      background: #fff;
-      box-shadow: 0 -2px 4px rgba(0,0,0,0.05);
-    }
-  </style>
+  <link rel="stylesheet" href="css/offers.css">
 </head>
 <body>
 
   <header class="header">
-  <div class="brand">
-    <strong>RentIT</strong>
-  </div>
-  <nav class="nav">
-    <a href="index.html" class="nav-link">Home</a>
-    <a href="popular.html" class="nav-link">Popular</a>
-    <a href="offers.html" class="nav-link active">Catalog</a>
-    <a href="support.html" class="nav-link">Support</a>
-    <a href="#" class="nav-link">Donate</a>
-  </nav>
-  <div class="account">
-    <div class="balance">0.00 €</div>
-    <button class="btn topup">Top up</button>
-    <button class="btn primary login">Login / Register</button>
-  </div>
-</header>
+    <div class="brand">
+      <strong>RentIT</strong>
+    </div>
+    <nav class="nav">
+      <a href="index.html" class="nav-link">Home</a>
+      <a href="popular.html" class="nav-link">Popular</a>
+      <a href="offers.html" class="nav-link active">Catalog</a>
+      <a href="support.html" class="nav-link">Support</a>
+      <a href="#" class="nav-link">Donate</a>
+    </nav>
+    <div class="account">
+      <div class="balance">0.00 €</div>
+      <button class="btn topup">Top up</button>
+      <button class="btn primary login">Login / Register</button>
+    </div>
+  </header>
 
   <div class="container">
     <section class="section">
@@ -231,7 +74,10 @@
             <div class="content">
               <div>
                 <h4>${v.name}</h4>
-                <div class="meta">${v.category} • ${v.address}</div>
+                <div class="meta">
+                  ${v.category} • <span class="rating">${v.rating} ⭐</span><br>
+                  ${v.address}
+                </div>
               </div>
               <div class="bottom">
                 <div class="price">€${v.price} / hr</div>
