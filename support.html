@@ -5,64 +5,7 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>RentIT Support</title>
   <link rel="stylesheet" href="css/index.css">
-  <style>
-
-    h1 {
-      text-align: center;
-      margin-bottom: 2rem;
-    }
-
-    .faq-item {
-      background: #fff;
-      margin-bottom: 1rem;
-      border-radius: 8px;
-      overflow: hidden;
-      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-      cursor: pointer;
-      transition: all 0.3s ease;
-    }
-
-    .faq-question {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 1rem 1.5rem;
-      font-weight: 600;
-    }
-
-    .faq-answer {
-      max-height: 0;
-      overflow: hidden;
-      padding: 0 1.5rem;
-      transition: max-height 0.5s ease, padding 0.3s ease;
-    }
-
-    .faq-answer p {
-      margin: 1rem 0;
-    }
-
-    .faq-item.open .faq-answer {
-      max-height: 500px;
-      padding: 1rem 1.5rem;
-    }
-
-    .arrow {
-      transition: transform 0.3s ease;
-    }
-
-    .faq-item.open .arrow {
-      transform: rotate(90deg);
-    }
-
-    footer {
-      text-align: center;
-      padding: 1.5rem;
-      margin-top: 3rem;
-      color: #666;
-      background: #fff;
-      box-shadow: 0 -2px 4px rgba(0,0,0,0.05);
-    }
-  </style>
+  <link rel="stylesheet" href="css/support.css">
 </head>
 <body>
   <header class="header">
@@ -92,7 +35,7 @@
         <span class="arrow">▶</span>
       </div>
       <div class="faq-answer">
-        <p>You can top up your wallet by clicking the "Top up" button in the header and following the payment instructions via Stripe.</p>
+        <p>You can top up your wallet by clicking the “Top up” button in the header and following the payment instructions via Stripe.</p>
       </div>
     </div>
 
@@ -102,7 +45,7 @@
         <span class="arrow">▶</span>
       </div>
       <div class="faq-answer">
-        <p>Browse the catalog, select a venue, and click the "Book" button. You can choose your time slot and confirm your reservation online.</p>
+        <p>Browse the catalog, select a venue, and click the “Book” button. You can choose your time slot and confirm your reservation online.</p>
       </div>
     </div>
 
@@ -122,8 +65,75 @@
         <span class="arrow">▶</span>
       </div>
       <div class="faq-answer">
-        <p>You can submit a support ticket using the "Support" page, or email us directly at support@rentit.com. We will respond within 24 hours.</p>
+        <p>You can submit a support ticket using the “Support” page, or email us directly at <strong>support@rentit.com</strong>. We will respond within 24 hours.</p>
       </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question">
+        Is there a refund policy?
+        <span class="arrow">▶</span>
+      </div>
+      <div class="faq-answer">
+        <p>Refunds are available for cancellations made within the allowed period (at least 24 hours before the event). For special cases, contact support.</p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question">
+        Can I change my account information?
+        <span class="arrow">▶</span>
+      </div>
+      <div class="faq-answer">
+        <p>Yes, you can update your name, email, and password in your profile settings under the “Account” section.</p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question">
+        How can I view my booking history?
+        <span class="arrow">▶</span>
+      </div>
+      <div class="faq-answer">
+        <p>All your previous and upcoming bookings are listed in the “My Bookings” section of your account dashboard.</p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question">
+        Do you support business accounts?
+        <span class="arrow">▶</span>
+      </div>
+      <div class="faq-answer">
+        <p>Yes! RentIT offers business accounts with invoice-based payments and dedicated support. Contact us for more information.</p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question">
+        Is my payment information secure?
+        <span class="arrow">▶</span>
+      </div>
+      <div class="faq-answer">
+        <p>All transactions are processed securely through Stripe. RentIT does not store or have access to your payment data.</p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question">
+        Can I rent multiple venues at once?
+        <span class="arrow">▶</span>
+      </div>
+      <div class="faq-answer">
+        <p>Yes, you can add multiple venues to your booking list and confirm them together at checkout.</p>
+      </div>
+    </div>
+
+    <div class="contact-box">
+      <h2>Still have questions?</h2>
+      <p>If you didn’t find the answer you were looking for, feel free to contact us directly at:</p>
+      <p><a href="mailto:rentit@rentit.com">rentit@rentit.com</a></p>
+      <button onclick="window.location.href='mailto:rentit@rentit.com'">Send Email</button>
     </div>
   </div>
 
@@ -134,11 +144,9 @@
 
     faqItems.forEach(item => {
       item.querySelector('.faq-question').addEventListener('click', () => {
-        // Закрываем все остальные
         faqItems.forEach(el => {
           if (el !== item) el.classList.remove('open');
         });
-        // Переключаем текущий
         item.classList.toggle('open');
       });
     });

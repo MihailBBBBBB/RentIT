@@ -94,12 +94,18 @@
       padding: 0 20px;
     }
 
-    /* Catalog */
     .section h3 {
       font-size: 22px;
-      margin-bottom: 16px;
+      margin-bottom: 12px;
+      color: #111827;
     }
 
+    .lead {
+      color: var(--muted);
+      margin-bottom: 18px;
+    }
+
+    /* Catalog */
     .catalog {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
@@ -141,7 +147,7 @@
     }
 
     .rating {
-      color: #f59e0b;
+      color: #f59e0b; /* золотой цвет для звезды */
       font-weight: 600;
     }
 
