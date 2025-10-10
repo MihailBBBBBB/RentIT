@@ -1,0 +1,105 @@
+/* Контент окна */
+  .sheet-content {
+    background: #fff;
+    width: 100%;
+    max-width: 500px;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    padding: 24px;
+    box-shadow: 0 -6px 20px rgba(0,0,0,0.1);
+    animation: slideUp 0.4s ease-out;
+  }
+
+  @keyframes slideUp {
+    from { transform: translateY(100px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+  }
+
+  .sheet-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px;
+  }
+
+  .sheet-header h3 {
+    margin: 0;
+    font-weight: 600;
+  }
+
+  .sheet-header span {
+    font-size: 24px;
+    cursor: pointer;
+    color: #888;
+    transition: 0.2s;
+  }
+
+  .sheet-header span:hover {
+    color: #111;
+  }
+
+  .sheet-content label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 500;
+  }
+
+  .sheet-content input {
+    width: 98.5%;
+    padding-top:10px;
+    padding-bottom:10px;
+    border-radius: 6px;
+    border: 1px solid #ddd;
+    font-size: 16px;
+    margin-bottom: 16px;
+  }
+
+  .sheet-content button {
+    width: 100%;
+    padding: 10px;
+    background-color: #22c55e;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: 0.2s;
+  }
+
+  .sheet-content button:hover {
+    background-color: #16a34a;
+  }
+
+  .bottom-sheet {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.45);
+  backdrop-filter: blur(3px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.25s ease;
+  z-index: 9999;
+}
+
+.bottom-sheet.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.sheet-content {
+  background: #fff;
+  width: 90%;
+  max-width: 420px;
+  border-radius: 16px;
+  padding: 28px 24px;
+  box-shadow: 0 8px 30px rgba(0,0,0,0.2);
+  transform: scale(0.95);
+  transition: transform 0.25s ease;
+}
+
+.bottom-sheet.active .sheet-content {
+  transform: scale(1);
+}
