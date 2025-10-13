@@ -245,7 +245,7 @@ include_once '../include/places.php';
   <?php } ?>
 
 <div class="profile-container">
-  <!-- Левая колонка — информация о пользователе -->
+  <!-- Леваяfff колонка — информация о пользователе -->
   <div class="profile-info">
     <img src="../<?= htmlspecialchars($user['avatar'] ?? 'img/default-avatar.png') ?>" alt="User Avatar">
     <h2><?= htmlspecialchars($user['first_name'] . ' ' . $user['last_name']) ?></h2>
