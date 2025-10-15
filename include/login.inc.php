@@ -15,7 +15,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         if ($user) {
             // Check if password matches
-            if ($password = $user['Password']) {  
+            if ($password === $user['Password']) {  
                 session_start();
                 $_SESSION['user_id'] = $user['User_id']; 
                 $_SESSION['user_email'] = $user['Mail'];
@@ -24,7 +24,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 header("Location: ../HTML/index.php"); 
                 exit();
             } else {
-                header("Location: ../HTML/Login.php?error=wrongpassword");
+                header("Location: ../HTML/Login.php?error=Wrong password");
                 exit();
             }
         } else {
