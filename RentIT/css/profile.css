@@ -1,0 +1,170 @@
+/* profile.css — единый мотив для страницы профиля (соответствует index.css/topup.css) */
+
+/* Переменные темы — подстрой под main index.css при желании */
+:root{
+  --bg: #f9fafb;
+  --card: #ffffff;
+  --muted: #6b7280;
+  --text: #111827;
+  --primary: #3b82f6;
+  --primary-dark: #2563eb;
+  --success: #16a34a;
+  --danger: #ef4444;
+  --surface: #f3f4f6;
+  --radius-lg: 16px;
+  --radius-md: 8px;
+  --shadow-soft: 0 6px 18px rgba(16,24,40,0.06);
+  --shadow-inset: inset 0 0 6px rgba(0,0,0,0.04);
+  --space: 1rem;
+  font-family: 'Inter', system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+}
+
+/* Общая страница */
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: inherit;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  line-height: 1.45;
+  margin: 0;
+  padding: 0;
+}
+
+/* Контейнер профиля */
+.profile-container {
+  max-width: 1100px;
+  margin: 2.5rem auto;
+  padding: 1.25rem;
+  display: flex;
+  gap: 2.25rem;
+  align-items: flex-start;
+  box-sizing: border-box;
+}
+
+/* Левая карточка */
+.profile-info {
+  width: 320px;
+  background: var(--surface);
+  padding: 1.5rem;
+  border-radius: var(--radius-lg);
+  text-align: center;
+  box-shadow: var(--shadow-inset);
+  border: 1px solid rgba(15,23,42,0.03);
+}
+
+.profile-info img {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid rgba(229,231,235,1); /* light border */
+  margin-bottom: 0.8rem;
+  display: inline-block;
+  background: linear-gradient(180deg, #fff, #f7f7fb);
+}
+
+.profile-info h2 {
+  font-size: 1.25rem;
+  margin: 0.25rem 0;
+  color: var(--text);
+  font-weight: 600;
+}
+
+.profile-info p {
+  margin: 0.25rem 0;
+  color: var(--muted);
+  font-size: 0.95rem;
+}
+
+.profile-info .email {
+  color: var(--primary);
+  font-weight: 600;
+  word-break: break-all;
+}
+
+/* Правая форма */
+.profile-form {
+  flex: 1;
+  background: var(--card);
+  padding: 1.5rem;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-soft);
+  border: 1px solid rgba(15,23,42,0.03);
+}
+
+.profile-form h1 {
+  margin: 0 0 0.75rem 0;
+  font-size: 1.5rem;
+  color: var(--text);
+  font-weight: 700;
+}
+
+/* Уведомления */
+.profile-form p[style*="color:green"], .profile-form .success {
+  color: var(--success);
+  background: rgba(16,185,129,0.06);
+  padding: 0.5rem;
+  border-radius: var(--radius-md);
+  margin-bottom: 0.75rem;
+}
+
+.profile-form p[style*="color:red"], .profile-form .error {
+  color: var(--danger);
+  background: rgba(239,68,68,0.06);
+  padding: 0.5rem;
+  border-radius: var(--radius-md);
+  margin-bottom: 0.75rem;
+}
+
+/* Метки и поля */
+.profile-form label {
+  display: block;
+  font-weight: 600;
+  color: #374151;
+  margin-top: 0.75rem;
+  font-size: 0.95rem;
+}
+
+.profile-form input[type="text"],
+.profile-form input[type="email"],
+.profile-form input[type="password"],
+.profile-form input[type="file"],
+.profile-form input[type="number"],
+.profile-form textarea,
+.profile-form select {
+  width: 100%;
+  padding: 0.6rem 0.75rem;
+  border-radius: var(--radius-md);
+  border: 1px solid #e5e7eb;
+  margin-top: 0.35rem;
+  box-sizing: border-box;
+  font-size: 0.95rem;
+  background: #fff;
+  transition: box-shadow .15s ease, border-color .12s ease;
+}
+
+.profile-form input:focus,
+.profile-form textarea:focus,
+.profile-form select:focus {
+  outline: none;
+  border-color: rgba(59,130,246,0.6);
+  box-shadow: 0 6px 20px rgba(59,130,246,0.08);
+}
+
+
+
+/* Адаптив */
+@media (max-width: 920px) {
+  .profile-container {
+    padding: 1rem;
+    flex-direction: column;
+    gap: 1rem;
+  }
+  .profile-info {
+    width: 100%;
+  }
+  .profile-form {
+    width: 100%;
+  }
+}
