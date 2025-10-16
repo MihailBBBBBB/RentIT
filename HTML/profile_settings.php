@@ -193,7 +193,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   <div class="profile-container">
     <!-- Левая колонка — информация о пользователе -->
     <div class="profile-info">
-      <img src="../<?= htmlspecialchars($user['Avatar'] ?? 'img/default-avatar.png') ?>" alt="User Avatar">
+      <img id="avatarPreview" src="../<?= htmlspecialchars($user['Avatar'] ?? 'img/default-avatar.png') ?>" alt="User Avatar">
       <h2><?= htmlspecialchars($user['Name'] . ' ' . $user['Surname']) ?></h2>
       <p class="email"><?= htmlspecialchars($user['Mail']) ?></p>
     </div>
@@ -206,7 +206,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
       <?php if ($error): ?><p class="error"><?= htmlspecialchars($error) ?></p><?php endif; ?>
 
       <label for="avatar">Change Avatar:</label>
-      <input type="file" name="avatar" accept="image/*">
+      <input type="file" id="avatarInput" name="avatar" onchange="previewAvatar(this)" accept="image/*">
 
       <label for="first_name">First Name:</label>
       <input type="text" name="first_name" id="first_name" value="<?= htmlspecialchars($user['Name']) ?>" required>
@@ -236,6 +236,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     window.addEventListener('click', (e) => {
       if (e.target === bottomSheet) bottomSheet.classList.remove('active');
     });
+
+    function previewAvatar(input) {
+      const file = input.files[0];
+      if (!file) return;
+
+      const reader = new FileReader();
+      reader.onload = function (e) {
+        document.getElementById('avatarPreview').src = e.target.result;
+      };
+      reader.readAsDataURL(file);
+    }
   </script>
 </body>
 </html>

@@ -165,10 +165,25 @@ if (!isset($_SESSION['csrf_token'])) {
       font-weight: 600;
     }
 
-    /* Admin Edit Button */
+    /* Admin Edit and Delete Buttons */
     .edit-btn {
       display: none; /* Hidden by default */
       background: #f59e0b; /* Orange for distinction */
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      padding: 8px 14px;
+      font-weight: 500;
+      font-size: 14px;
+      cursor: pointer;
+      text-decoration: none;
+      text-align: center;
+      transition: background 0.2s;
+    }
+
+    .delete-btn {
+      display: none; /* Hidden by default */
+      background: #ef4444; /* Red for danger */
       color: #fff;
       border: none;
       border-radius: 8px;
@@ -185,8 +200,16 @@ if (!isset($_SESSION['csrf_token'])) {
       background: #d97706; /* Darker orange on hover */
     }
 
-    /* Show edit button for admins */
+    .delete-btn:hover {
+      background: #dc2626; /* Darker red on hover */
+    }
+
+    /* Show edit and delete buttons for admins */
     .card.admin .edit-btn {
+      display: block;
+    }
+
+    .card.admin .delete-btn {
       display: block;
     }
 
@@ -202,101 +225,101 @@ if (!isset($_SESSION['csrf_token'])) {
 </head>
 <body>
 
-     <?php if (isset($_SESSION['user_id'])) { ?>
-        <?php if ($_SESSION['is_admin'] == 1) { ?>
-            <header class="header">
-                <div class="brand"><strong>RentIT</strong></div>
-                <nav class="nav">
-                    <a href="index.php" class="nav-link <?php echo basename($_SERVER['PHP_SELF']) === 'index.php' ? 'active' : ''; ?>">Home</a>
-                    <a href="popular.php" class="nav-link <?php echo basename($_SERVER['PHP_SELF']) === 'popular.php' ? 'active' : ''; ?>">Popular</a>
-                    <a href="offers.php" class="nav-link <?php echo basename($_SERVER['PHP_SELF']) === 'offers.php' ? 'active' : ''; ?>">Catalog</a>
-                    <a href="profile_settings.php" class="nav-link">My profile</a>
-                    <a href="support.php" class="nav-link <?php echo basename($_SERVER['PHP_SELF']) === 'support.php' ? 'active' : ''; ?>">Support</a>
-                    <a href="https://www.paypal.com/donate/?hosted_button_id=4264QAURH9QKC" class="nav-link <?php echo basename($_SERVER['PHP_SELF']) === 'https://www.paypal.com/donate/?hosted_button_id=4264QAURH9QKC' ? 'active' : ''; ?>">Donate</a>
-                </nav>
-                <div class="account">
-                    <div class="balance">0.00 €</div>
-                    <button id="topupBtn" style="background-color:#22c55e;color:white;padding:8px 16px;
-                        border-radius:6px;border:1px solid #16a34a;cursor:pointer;
-                        font-weight:500;">Top up</button>
-                    <div id="bottomSheet" class="bottom-sheet">
-                        <div class="sheet-content">
-                            <div class="sheet-header">
-                                <h3>Add Funds</h3>
-                                <span id="closeSheet">&times;</span>
-                            </div>
-                            <form method="POST" action="../checkout.php">
-                                <label for="amount">Enter amount (USD)</label>
-                                <input type="number" id="amount" name="amount" min="1" placeholder="10" required>
-                                <button type="submit">Proceed to Payment</button>
-                            </form>
-                        </div>
-                    </div>
-                    <a href="addPlace.php" class="nav-link">Add Place</a>
-                    <a href="myReservations.php" class="nav-link <?php echo basename($_SERVER['PHP_SELF']) === 'myReservations.php' ? 'active' : ''; ?>">My Reservations</a>
-                    <a href="../include/logOut.php"><button class="btn primary login">Log Out</button></a>
-                </div>
-            </header>
-        <?php } else { ?>
-            <header class="header">
-                <div class="brand"><strong>RentIT</strong></div>
-                <nav class="nav">
-                    <a href="index.php" class="nav-link <?php echo basename($_SERVER['PHP_SELF']) === 'index.php' ? 'active' : ''; ?>">Home</a>
-                    <a href="popular.php" class="nav-link <?php echo basename($_SERVER['PHP_SELF']) === 'popular.php' ? 'active' : ''; ?>">Popular</a>
-                    <a href="offers.php" class="nav-link <?php echo basename($_SERVER['PHP_SELF']) === 'offers.php' ? 'active' : ''; ?>">Catalog</a>
-                    <a href="profile_settings.php" class="nav-link">My profile</a>
-                    <a href="support.php" class="nav-link <?php echo basename($_SERVER['PHP_SELF']) === 'support.php' ? 'active' : ''; ?>">Support</a>
-                    <a href="https://www.paypal.com/donate/?hosted_button_id=4264QAURH9QKC" class="nav-link <?php echo basename($_SERVER['PHP_SELF']) === 'https://www.paypal.com/donate/?hosted_button_id=4264QAURH9QKC' ? 'active' : ''; ?>">Donate</a>
-                </nav>
-                <div class="account">
-                    <div class="balance">0.00 €</div>
-                    <button id="topupBtn" style="background-color:#22c55e;color:white;padding:8px 16px;
-                        border-radius:6px;border:1px solid #16a34a;cursor:pointer;
-                        font-weight:500;">Top up</button>
-                    <div id="bottomSheet" class="bottom-sheet">
-                        <div class="sheet-content">
-                            <div class="sheet-header">
-                                <h3>Add Funds</h3>
-                                <span id="closeSheet">&times;</span>
-                            </div>
-                            <form method="POST" action="../checkout.php">
-                                <label for="amount">Enter amount (USD)</label>
-                                <input type="number" id="amount" name="amount" min="1" placeholder="10" required>
-                                <button type="submit">Proceed to Payment</button>
-                            </form>
-                        </div>
-                    </div>
-                    <a href="myReservations.php" class="nav-link <?php echo basename($_SERVER['PHP_SELF']) === 'myReservations.php' ? 'active' : ''; ?>">My Reservations</a>
-                    <a href="../include/logOut.php"><button class="btn primary login">Log Out</button></a>
-                </div>
-            </header>
-        <?php } ?>
-    <?php } else { ?>
-        <header class="header">
-            <div class="brand"><strong>RentIT</strong></div>
-            <nav class="nav">
-                <a href="index.php" class="nav-link <?php echo basename($_SERVER['PHP_SELF']) === 'index.php' ? 'active' : ''; ?>">Home</a>
-                <a href="popular.php" class="nav-link <?php echo basename($_SERVER['PHP_SELF']) === 'popular.php' ? 'active' : ''; ?>">Popular</a>
-                <a href="offers.php" class="nav-link <?php echo basename($_SERVER['PHP_SELF']) === 'offers.php' ? 'active' : ''; ?>">Catalog</a>
-                <a href="support.php" class="nav-link <?php echo basename($_SERVER['PHP_SELF']) === 'support.php' ? 'active' : ''; ?>">Support</a>
-                <a href="https://www.paypal.com/donate/?hosted_button_id=4264QAURH9QKC" class="nav-link">Donate</a>
-            </nav>
-            <div class="account">
-                <button id="topupBtn" style="background-color:#22c55e;color:white;padding:8px 16px;
-                    border-radius:6px;border:1px solid #16a34a;cursor:pointer;
-                    font-weight:500;">Top up</button>
-                <div id="bottomSheet" class="bottom-sheet">
-                    <div class="sheet-content">
-                        <div class="sheet-header">
-                            <h3>Please login!</h3>
-                            <span id="closeSheet">&times;</span>
-                        </div>
-                    </div>
-                </div>
-                <a href="login.php"><button class="btn primary login">Login / Register</button></a>
+  <?php if (isset($_SESSION['user_id'])) { ?>
+    <?php if ($_SESSION['is_admin'] == 1) { ?>
+      <header class="header">
+        <div class="brand"><strong>RentIT</strong></div>
+        <nav class="nav">
+          <a href="index.php" class="nav-link <?php echo basename($_SERVER['PHP_SELF']) === 'index.php' ? 'active' : ''; ?>">Home</a>
+          <a href="popular.php" class="nav-link <?php echo basename($_SERVER['PHP_SELF']) === 'popular.php' ? 'active' : ''; ?>">Popular</a>
+          <a href="offers.php" class="nav-link <?php echo basename($_SERVER['PHP_SELF']) === 'offers.php' ? 'active' : ''; ?>">Catalog</a>
+          <a href="profile_settings.php" class="nav-link">My profile</a>
+          <a href="support.php" class="nav-link <?php echo basename($_SERVER['PHP_SELF']) === 'support.php' ? 'active' : ''; ?>">Support</a>
+          <a href="https://www.paypal.com/donate/?hosted_button_id=4264QAURH9QKC" class="nav-link <?php echo basename($_SERVER['PHP_SELF']) === 'https://www.paypal.com/donate/?hosted_button_id=4264QAURH9QKC' ? 'active' : ''; ?>">Donate</a>
+        </nav>
+        <div class="account">
+          <div class="balance">0.00 €</div>
+          <button id="topupBtn" style="background-color:#22c55e;color:white;padding:8px 16px;
+            border-radius:6px;border:1px solid #16a34a;cursor:pointer;
+            font-weight:500;">Top up</button>
+          <div id="bottomSheet" class="bottom-sheet">
+            <div class="sheet-content">
+              <div class="sheet-header">
+                <h3>Add Funds</h3>
+                <span id="closeSheet">&times;</span>
+              </div>
+              <form method="POST" action="../checkout.php">
+                <label for="amount">Enter amount (USD)</label>
+                <input type="number" id="amount" name="amount" min="1" placeholder="10" required>
+                <button type="submit">Proceed to Payment</button>
+              </form>
             </div>
-        </header>
+          </div>
+          <a href="addPlace.php" class="nav-link">Add Place</a>
+          <a href="myReservations.php" class="nav-link <?php echo basename($_SERVER['PHP_SELF']) === 'myReservations.php' ? 'active' : ''; ?>">My Reservations</a>
+          <a href="../include/logOut.php"><button class="btn primary login">Log Out</button></a>
+        </div>
+      </header>
+    <?php } else { ?>
+      <header class="header">
+        <div class="brand"><strong>RentIT</strong></div>
+        <nav class="nav">
+          <a href="index.php" class="nav-link <?php echo basename($_SERVER['PHP_SELF']) === 'index.php' ? 'active' : ''; ?>">Home</a>
+          <a href="popular.php" class="nav-link <?php echo basename($_SERVER['PHP_SELF']) === 'popular.php' ? 'active' : ''; ?>">Popular</a>
+          <a href="offers.php" class="nav-link <?php echo basename($_SERVER['PHP_SELF']) === 'offers.php' ? 'active' : ''; ?>">Catalog</a>
+          <a href="profile_settings.php" class="nav-link">My profile</a>
+          <a href="support.php" class="nav-link <?php echo basename($_SERVER['PHP_SELF']) === 'support.php' ? 'active' : ''; ?>">Support</a>
+          <a href="https://www.paypal.com/donate/?hosted_button_id=4264QAURH9QKC" class="nav-link <?php echo basename($_SERVER['PHP_SELF']) === 'https://www.paypal.com/donate/?hosted_button_id=4264QAURH9QKC' ? 'active' : ''; ?>">Donate</a>
+        </nav>
+        <div class="account">
+          <div class="balance">0.00 €</div>
+          <button id="topupBtn" style="background-color:#22c55e;color:white;padding:8px 16px;
+            border-radius:6px;border:1px solid #16a34a;cursor:pointer;
+            font-weight:500;">Top up</button>
+          <div id="bottomSheet" class="bottom-sheet">
+            <div class="sheet-content">
+              <div class="sheet-header">
+                <h3>Add Funds</h3>
+                <span id="closeSheet">&times;</span>
+              </div>
+              <form method="POST" action="../checkout.php">
+                <label for="amount">Enter amount (USD)</label>
+                <input type="number" id="amount" name="amount" min="1" placeholder="10" required>
+                <button type="submit">Proceed to Payment</button>
+              </form>
+            </div>
+          </div>
+          <a href="myReservations.php" class="nav-link <?php echo basename($_SERVER['PHP_SELF']) === 'myReservations.php' ? 'active' : ''; ?>">My Reservations</a>
+          <a href="../include/logOut.php"><button class="btn primary login">Log Out</button></a>
+        </div>
+      </header>
     <?php } ?>
+  <?php } else { ?>
+    <header class="header">
+      <div class="brand"><strong>RentIT</strong></div>
+      <nav class="nav">
+        <a href="index.php" class="nav-link <?php echo basename($_SERVER['PHP_SELF']) === 'index.php' ? 'active' : ''; ?>">Home</a>
+        <a href="popular.php" class="nav-link <?php echo basename($_SERVER['PHP_SELF']) === 'popular.php' ? 'active' : ''; ?>">Popular</a>
+        <a href="offers.php" class="nav-link <?php echo basename($_SERVER['PHP_SELF']) === 'offers.php' ? 'active' : ''; ?>">Catalog</a>
+        <a href="support.php" class="nav-link <?php echo basename($_SERVER['PHP_SELF']) === 'support.php' ? 'active' : ''; ?>">Support</a>
+        <a href="https://www.paypal.com/donate/?hosted_button_id=4264QAURH9QKC" class="nav-link">Donate</a>
+      </nav>
+      <div class="account">
+        <button id="topupBtn" style="background-color:#22c55e;color:white;padding:8px 16px;
+          border-radius:6px;border:1px solid #16a34a;cursor:pointer;
+          font-weight:500;">Top up</button>
+        <div id="bottomSheet" class="bottom-sheet">
+          <div class="sheet-content">
+            <div class="sheet-header">
+              <h3>Please login!</h3>
+              <span id="closeSheet">&times;</span>
+            </div>
+          </div>
+        </div>
+        <a href="login.php"><button class="btn primary login">Login / Register</button></a>
+      </div>
+    </header>
+  <?php } ?>
 
   <div class="container">
     <section class="section">
@@ -316,6 +339,11 @@ if (!isset($_SESSION['csrf_token'])) {
               </div>
               <?php if (isset($_SESSION['is_admin']) && $_SESSION['is_admin'] == 1) { ?>
                 <a href="editPlace.php?id=<?php echo htmlspecialchars($p['Place_id']); ?>&csrf_token=<?php echo $_SESSION['csrf_token']; ?>" class="edit-btn">Edit Place</a>
+                <form action="../include/deletePlace.php" method="POST" style="margin: 0; display: inline;">
+                  <input type="hidden" name="place_id" value="<?php echo htmlspecialchars($p['Place_id']); ?>">
+                  <input type="hidden" name="csrf_token" value="<?php echo htmlspecialchars($_SESSION['csrf_token']); ?>">
+                  <button type="submit" class="delete-btn">Delete</button>
+                </form>
               <?php } ?>
             </div>
           </div>
@@ -340,6 +368,7 @@ if (!isset($_SESSION['csrf_token'])) {
     const topupBtn = document.getElementById('topupBtn');
     const bottomSheet = document.getElementById('bottomSheet');
     const closeSheet = document.getElementById('closeSheet');
+    const deleteButtons = document.querySelectorAll('.delete-btn');
 
     topupBtn.addEventListener('click', () => {
       bottomSheet.classList.add('active');
@@ -354,6 +383,14 @@ if (!isset($_SESSION['csrf_token'])) {
       if (e.target === bottomSheet) {
         bottomSheet.classList.remove('active');
       }
+    });
+
+    deleteButtons.forEach(button => {
+      button.addEventListener('click', (e) => {
+        if (!confirm('Are you sure you want to delete this place? This action cannot be undone.')) {
+          e.preventDefault();
+        }
+      });
     });
   </script>
 </body>
