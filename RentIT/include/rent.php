@@ -2,57 +2,54 @@
 session_start();
 require_once 'dbh.inc.php';
 
-// Verify request method and user session
+// Проверка метода запроса и авторизации
 if ($_SERVER["REQUEST_METHOD"] !== "POST" || !isset($_SESSION['user_id'])) {
     $place_id = (int)($_GET['id'] ?? 0);
     header("Location: ../HTML/aboutOffer.php?id=$place_id&error=" . urlencode("Please log in to book a table"));
     exit();
 }
 
-// Validate CSRF token
+// Проверка CSRF
 if (!isset($_POST['csrf_token']) || $_POST['csrf_token'] !== $_SESSION['csrf_token']) {
     $place_id = (int)($_POST['place_id'] ?? 0);
     header("Location: ../HTML/aboutOffer.php?id=$place_id&error=" . urlencode("Invalid CSRF token"));
     exit();
 }
 
-// Collect and sanitize input
+// Получаем данные бронирования
 $place_id = (int)($_POST['place_id'] ?? 0);
 $user_id = (int)$_SESSION['user_id'];
-$date = filter_input(INPUT_POST, 'date', FILTER_SANITIZE_STRING) ?? '';
-$time = filter_input(INPUT_POST, 'time', FILTER_SANITIZE_STRING) ?? '';
+$date = $_POST['date'] ?? '';
+$time = $_POST['time'] ?? '';
 $duration = (int)($_POST['duration'] ?? 0);
-$price_per_hour = 0; // To be fetched from the place table
 
-// Validate input
-$current_datetime = new DateTime();
-$selected_datetime = new DateTime("$date $time");
-if ($selected_datetime < $current_datetime) {
-    header("Location: ../HTML/aboutOffer.php?id=$place_id&error=" . urlencode("Cannot book a date/time in the past"));
-    exit();
-}
-if ($duration < 1 || $duration > 4) {
-    header("Location: ../HTML/aboutOffer.php?id=$place_id&error=" . urlencode("Invalid duration selection"));
-    exit();
-}
-
-// Fetch place details and check availability
 try {
+    // Получаем цену за час и баланс пользователя
     $stmt = $pdo->prepare("SELECT Price FROM place WHERE Place_id = ?");
     $stmt->execute([$place_id]);
     $place = $stmt->fetch(PDO::FETCH_ASSOC);
-    if (!$place) {
-        header("Location: ../HTML/aboutOffer.php?id=$place_id&error=" . urlencode("Venue not found"));
-        exit();
-    }
+    if (!$place) throw new Exception("Venue not found");
+
     $price_per_hour = (float)$place['Price'];
 
-    // Calculate Res_finish as a datetime
+    $stmt = $pdo->prepare("SELECT Balance FROM users WHERE User_id = ?");
+    $stmt->execute([$user_id]);
+    $user = $stmt->fetch(PDO::FETCH_ASSOC);
+    if (!$user) throw new Exception("User not found");
+
+    $total_price = $price_per_hour * $duration;
+    $balance = (float)$user['Balance'];
+
+    if ($balance < $total_price) {
+        header("Location: ../HTML/aboutOffer.php?id=$place_id&error=" . urlencode("Insufficient balance"));
+        exit();
+    }
+
+    // Проверяем конфликтующие брони
     $res_start = new DateTime("$date $time");
     $res_finish = clone $res_start;
     $res_finish->modify("+$duration hours");
 
-    // Check for conflicting reservations
     $stmt = $pdo->prepare("SELECT COUNT(*) FROM reservation WHERE Place_id = ? AND (
         (Res_start < ? AND Res_finish > ?) OR
         (Res_start < ? AND Res_finish > ?) OR
@@ -67,17 +64,19 @@ try {
         $res_start->format('Y-m-d H:i:s'),
         $res_finish->format('Y-m-d H:i:s')
     ]);
-    $conflicting_reservations = $stmt->fetchColumn();
-
-    if ($conflicting_reservations > 0) {
+    if ($stmt->fetchColumn() > 0) {
         header("Location: ../HTML/aboutOffer.php?id=$place_id&error=" . urlencode("This time slot is already booked"));
         exit();
     }
 
-    // Calculate total price for display
-    $total_price = $price_per_hour * $duration;
+    // Всё ок — списываем баланс и создаем бронь в транзакции
+    $pdo->beginTransaction();
 
-    // Insert the reservation with datetime values
+    // Списание
+    $stmt = $pdo->prepare("UPDATE users SET Balance = Balance - ? WHERE User_id = ?");
+    $stmt->execute([$total_price, $user_id]);
+
+    // Создание брони
     $stmt = $pdo->prepare("INSERT INTO reservation (Place_id, User_id, Res_start, Res_finish) VALUES (?, ?, ?, ?)");
     $stmt->execute([
         $place_id,
@@ -86,9 +85,14 @@ try {
         $res_finish->format('Y-m-d H:i:s')
     ]);
 
+    $pdo->commit();
+
     header("Location: ../HTML/aboutOffer.php?id=$place_id&success=" . urlencode("Table booked successfully! Total: €" . number_format($total_price, 2)));
     exit();
-} catch (PDOException $e) {
-    header("Location: ../HTML/aboutOffer.php?id=$place_id&error=" . urlencode("Error booking table: " . $e->getMessage()));
+
+} catch (Exception $e) {
+    $pdo->rollBack();
+    header("Location: ../HTML/aboutOffer.php?id=$place_id&error=" . urlencode("Error: " . $e->getMessage()));
     exit();
 }
+?>

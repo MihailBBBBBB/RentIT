@@ -2,6 +2,18 @@
 session_start();
 include_once '../include/dbh.inc.php'; // твой файл с $pdo
 
+$balance = 0.0; // дефолтное значение
+
+if (isset($_SESSION['user_id'])) {
+    $user_id = $_SESSION['user_id'];
+    $stmt = $pdo->prepare("SELECT Balance FROM users WHERE User_id = ?");
+    $stmt->execute([$user_id]);
+    $row = $stmt->fetch(PDO::FETCH_ASSOC);
+    if ($row) {
+        $balance = (float)$row['Balance'];
+    }
+}
+
 // === ЧТЕНИЕ ФИЛЬТРОВ ===
 $type = $_GET['type'] ?? '';
 $rating = $_GET['rating'] ?? '';
@@ -94,7 +106,7 @@ $popularPlaces = $popularStmt->fetchAll(PDO::FETCH_ASSOC);
                     <a href="https://www.paypal.com/donate/?hosted_button_id=4264QAURH9QKC" class="nav-link <?php echo basename($_SERVER['PHP_SELF']) === 'https://www.paypal.com/donate/?hosted_button_id=4264QAURH9QKC' ? 'active' : ''; ?>">Donate</a>
                 </nav>
                 <div class="account">
-                    <div class="balance">0.00 €</div>
+                    <div class="balance"><?= number_format($balance, 2) ?> €</div>
                     <button id="topupBtn" style="background-color:#22c55e;color:white;padding:8px 16px;
                         border-radius:6px;border:1px solid #16a34a;cursor:pointer;
                         font-weight:500;">Top up</button>
@@ -128,7 +140,7 @@ $popularPlaces = $popularStmt->fetchAll(PDO::FETCH_ASSOC);
                     <a href="https://www.paypal.com/donate/?hosted_button_id=4264QAURH9QKC" class="nav-link <?php echo basename($_SERVER['PHP_SELF']) === 'https://www.paypal.com/donate/?hosted_button_id=4264QAURH9QKC' ? 'active' : ''; ?>">Donate</a>
                 </nav>
                 <div class="account">
-                    <div class="balance">0.00 €</div>
+                  <div class="balance"><?= number_format($balance, 2) ?> €</div>
                     <button id="topupBtn" style="background-color:#22c55e;color:white;padding:8px 16px;
                         border-radius:6px;border:1px solid #16a34a;cursor:pointer;
                         font-weight:500;">Top up</button>

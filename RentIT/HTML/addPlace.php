@@ -2,6 +2,18 @@
 session_start();
 require_once '../include/dbh.inc.php';
 
+$balance = 0.0; // дефолтное значение
+
+if (isset($_SESSION['user_id'])) {
+    $user_id = $_SESSION['user_id'];
+    $stmt = $pdo->prepare("SELECT Balance FROM users WHERE User_id = ?");
+    $stmt->execute([$user_id]);
+    $row = $stmt->fetch(PDO::FETCH_ASSOC);
+    if ($row) {
+        $balance = (float)$row['Balance'];
+    }
+}
+
 // Check if user is logged in and is an admin
 if (!isset($_SESSION['user_id']) || $_SESSION['is_admin'] !== 1) {
     header("Location: index.php?error=" . urlencode("Please log in as an admin to add a place."));
@@ -324,7 +336,7 @@ if (!isset($_SESSION['user_id']) || $_SESSION['is_admin'] !== 1) {
                     <a href="https://www.paypal.com/donate/?hosted_button_id=4264QAURH9QKC" class="nav-link <?php echo basename($_SERVER['PHP_SELF']) === 'https://www.paypal.com/donate/?hosted_button_id=4264QAURH9QKC' ? 'active' : ''; ?>">Donate</a>
                 </nav>
                 <div class="account">
-                    <div class="balance">0.00 €</div>
+                    <div class="balance"><?= number_format($balance, 2) ?> €</div>
                     <button id="topupBtn" style="background-color:#22c55e;color:white;padding:8px 16px;
                         border-radius:6px;border:1px solid #16a34a;cursor:pointer;
                         font-weight:500;">Top up</button>
@@ -358,7 +370,7 @@ if (!isset($_SESSION['user_id']) || $_SESSION['is_admin'] !== 1) {
                     <a href="https://www.paypal.com/donate/?hosted_button_id=4264QAURH9QKC" class="nav-link <?php echo basename($_SERVER['PHP_SELF']) === 'https://www.paypal.com/donate/?hosted_button_id=4264QAURH9QKC' ? 'active' : ''; ?>">Donate</a>
                 </nav>
                 <div class="account">
-                    <div class="balance">0.00 €</div>
+                    <div class="balance"><?= number_format($balance, 2) ?> €</div>
                     <button id="topupBtn" style="background-color:#22c55e;color:white;padding:8px 16px;
                         border-radius:6px;border:1px solid #16a34a;cursor:pointer;
                         font-weight:500;">Top up</button>
