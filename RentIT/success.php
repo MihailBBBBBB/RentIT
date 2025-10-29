@@ -1,4 +1,4 @@
 <?php
-echo "<h1>✅ Оплата прошла успешно!</h1>";
-echo "<p>Ваш баланс будет обновлён в течение нескольких секунд.</p>";
+echo "<h1>✅ Payment was successful!</h1>";
+echo "<p>Your balance will be updated within a few seconds.</p>";
 

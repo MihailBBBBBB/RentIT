@@ -38,6 +38,8 @@ if (!$place) {
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
     <title>Edit Place | RentIT</title>
     <link rel="stylesheet" href="../css/index.css">
+        <link rel="stylesheet" href="../css/topup.css">
+
     <style>
         .container {
             max-width: 600px;
@@ -203,5 +205,36 @@ if (!$place) {
             <button type="submit">Update Place</button>
         </form>
     </div>
+
+<script>
+    const faqItems = document.querySelectorAll('.faq-item');
+    faqItems.forEach(item => {
+      item.querySelector('.faq-question').addEventListener('click', () => {
+        faqItems.forEach(el => {
+          if (el !== item) el.classList.remove('open');
+        });
+        item.classList.toggle('open');
+      });
+    });
+
+    const topupBtn = document.getElementById('topupBtn');
+    const bottomSheet = document.getElementById('bottomSheet');
+    const closeSheet = document.getElementById('closeSheet');
+
+    topupBtn.addEventListener('click', () => {
+      bottomSheet.classList.add('active');
+    });
+
+    closeSheet.addEventListener('click', () => {
+      bottomSheet.classList.remove('active');
+    });
+
+    // Close when clicking outside content
+    window.addEventListener('click', (e) => {
+      if (e.target === bottomSheet) {
+        bottomSheet.classList.remove('active');
+      }
+    });
+  </script>
 </body>
 </html>

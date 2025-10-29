@@ -30,13 +30,12 @@ $checkout_session = \Stripe\Checkout\Session::create([
             'currency' => 'usd',
             'unit_amount' => $amount_cents,
             'product_data' => [
-                'name' => 'Пополнение баланса',
+                'name' => 'Add Funds to RentIT Account',
             ],
         ],
     ]],
 ]);
 
-// Редиректим на страницу оплаты Stripe
 http_response_code(303);
 header("Location: " . $checkout_session->url);
 exit;
